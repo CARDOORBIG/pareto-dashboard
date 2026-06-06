@@ -1,0 +1,7 @@
+{
+  "TXYJ16": "Auxiliary equipment failure / FA multimode fiber damaged",
+  "TXYJ12": "UV value drop / LENS damaged",
+  "TXYJ10": "LENS skewed / Abnormal finding / Loose gripper / Leveling failed / Grab failed",
+  "TXRJ05": "Bare light exception / Cannot find value",
+  "TXRJ06": "Chip recognition exception / Recognition bit deviation"
+}

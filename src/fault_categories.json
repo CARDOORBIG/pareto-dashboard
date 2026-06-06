@@ -1,0 +1,6716 @@
+{
+  "EFAZZ0000852": {
+    "2026-05-16": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-17": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "MMYJ12": 2,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-18": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-20": {
+      "Software Exception": {
+        "TXRJ03": 1
+      }
+    },
+    "2026-05-25": {
+      "切机调试": {
+        "RXQJ01": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    }
+  },
+  "EFAZZ0000854": {
+    "2026-05-02": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ12": 1,
+        "TXYJ13": 1
+      }
+    },
+    "2026-05-07": {
+      "Software Exception": {
+        "TXRJ10": 1
+      }
+    },
+    "2026-05-20": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-23": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Software Exception": {
+        "TXRJ60": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "TXRJ06": 1,
+        "TXRJ54": 1
+      }
+    }
+  },
+  "EFAZZ0000972": {
+    "2026-05-05": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-07": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "RXYJ60": 1
+      }
+    },
+    "2026-05-16": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-17": {
+      "Software Exception": {
+        "RXRJ01": 1,
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-18": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-20": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      }
+    },
+    "2026-05-22": {
+      "效验异常": {
+        "RXJY03": 1,
+        "RXJY05": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-23": {
+      "Software Exception": {
+        "RXRJ06": 2
+      }
+    },
+    "2026-05-25": {
+      "Software Exception": {
+        "RXRJ04": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "RXYJ16": 1
+      },
+      "Software Exception": {
+        "RXRJ06": 1
+      }
+    }
+  },
+  "EFAZZ0000973": {
+    "2026-05-06": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      }
+    },
+    "2026-05-07": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-08": {
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-15": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "RXYJ13": 1
+      },
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "RXYJ10": 1,
+        "RXYJ12": 1,
+        "RXYJ59": 1
+      },
+      "Software Exception": {
+        "RXRJ04": 2,
+        "RXRJ05": 1,
+        "RXRJ08": 1,
+        "RXRJ09": 1,
+        "RXRJ10": 3
+      }
+    },
+    "2026-05-17": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Software Exception": {
+        "RXRJ10": 1,
+        "RXRJ51": 1
+      }
+    },
+    "2026-05-18": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Hardware Exception": {
+        "RXYJ60": 1
+      }
+    },
+    "2026-05-19": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "RXYJ62": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "RXYJ63": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "RXYJ10": 2
+      }
+    }
+  },
+  "EFAZZ0000974": {
+    "2026-05-06": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-09": {
+      "Hardware Exception": {
+        "RXYJ12": 1
+      }
+    },
+    "2026-05-11": {
+      "Material Exception": {
+        "HWDZ01": 1
+      }
+    },
+    "2026-05-12": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    },
+    "2026-05-20": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "RXYJ62": 1
+      }
+    }
+  },
+  "EFAZZ0000975": {
+    "2026-05-01": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-05": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-06": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ54": 1
+      },
+      "Software Exception": {
+        "RXRJ02": 1,
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-07": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-15": {
+      "Software Exception": {
+        "RXRJ04": 2,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-16": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ04": 2,
+        "RXRJ06": 1,
+        "RXRJ09": 1,
+        "RXRJ10": 4
+      }
+    },
+    "2026-05-17": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ10": 4
+      }
+    },
+    "2026-05-18": {
+      "效验异常": {
+        "RXJY03": 3
+      },
+      "Hardware Exception": {
+        "RXYJ58": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "RXYJ13": 1,
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ02": 1
+      }
+    },
+    "2026-05-20": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-22": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-25": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-26": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    }
+  },
+  "EFAZZ0001007": {
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "RXYJ09": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-08": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ12": 2
+      }
+    },
+    "2026-05-15": {
+      "Software Exception": {
+        "RXRJ10": 3
+      }
+    },
+    "2026-05-16": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Hardware Exception": {
+        "RXYJ13": 1
+      },
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ09": 2,
+        "RXRJ10": 3
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "RXYJ13": 1,
+        "RXYJ14": 1,
+        "RXYJ16": 1
+      }
+    },
+    "2026-05-18": {
+      "效验异常": {
+        "RXJY03": 3
+      },
+      "Hardware Exception": {
+        "RXYJ13": 1,
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ08": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-19": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Hardware Exception": {
+        "RXYJ11": 1,
+        "RXYJ13": 1,
+        "RXYJ62": 1
+      },
+      "Software Exception": {
+        "RXRJ06": 2,
+        "RXRJ10": 5
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "RXYJ10": 2
+      },
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-21": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ13": 2,
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-22": {
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ09": 2,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-23": {
+      "效验异常": {
+        "RXJY03": 1,
+        "RXJY05": 1
+      },
+      "Hardware Exception": {
+        "RXYJ11": 1
+      },
+      "Software Exception": {
+        "RXRJ10": 2
+      }
+    },
+    "2026-05-24": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-25": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-26": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 2
+      }
+    }
+  },
+  "EFAZZ0001038": {
+    "2026-05-14": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 2
+      }
+    },
+    "2026-05-15": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 3,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ01": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-16": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-17": {
+      "Material Exception": {
+        "TXWL01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ52": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-18": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-19": {
+      "Material Exception": {
+        "TXWL01": 1,
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 3,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 2
+      }
+    },
+    "2026-05-20": {
+      "Material Exception": {
+        "TXWL51": 3
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "TXYJ05": 1
+      },
+      "Software Exception": {
+        "TXRJ02": 1
+      }
+    },
+    "2026-05-24": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-25": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ02": 1
+      }
+    },
+    "2026-05-26": {
+      "Material Exception": {
+        "TXWL51": 3
+      }
+    }
+  },
+  "EFAZZ0001605": {
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ10": 2
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-18": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Software Exception": {
+        "TXRJ53": 1
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 2
+      },
+      "Software Exception": {
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    }
+  },
+  "EFAZZ0001606": {
+    "2026-05-11": {
+      "Hardware Exception": {
+        "TXYJ12": 4
+      }
+    },
+    "2026-05-12": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "HWYJ16": 1,
+        "TXYJ10": 2,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ05": 3
+      }
+    },
+    "2026-05-13": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 6
+      },
+      "Software Exception": {
+        "TXRJ55": 1
+      }
+    },
+    "2026-05-14": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "MMYJ12": 3,
+        "TXYJ10": 4,
+        "TXYJ12": 9
+      },
+      "Software Exception": {
+        "TXRJ54": 1,
+        "TXRJ55": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ12": 7
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ13": 1
+      }
+    },
+    "2026-05-20": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "TXRJ06": 1
+      }
+    },
+    "2026-05-21": {
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ16": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "TXYJ05": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ06": 1,
+        "TXRJ07": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ16": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ54": 1,
+        "TXRJ55": 1
+      }
+    },
+    "2026-05-25": {
+      "Software Exception": {
+        "TXRJ06": 1,
+        "TXRJ54": 1,
+        "TXRJ55": 1
+      }
+    },
+    "2026-05-26": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    }
+  },
+  "EFAZZ0001607": {
+    "2026-05-02": {
+      "Hardware Exception": {
+        "TXYJ05": 1
+      }
+    },
+    "2026-05-11": {
+      "效验异常": {
+        "TXJY53": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ12": 1,
+        "TXYJ55": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-17": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-18": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 2,
+        "TXYJ16": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ11": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 2
+      }
+    },
+    "2026-05-20": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 2
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-21": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ55": 1,
+        "TXRJ59": 1
+      }
+    },
+    "2026-05-22": {
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-23": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ10": 4
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-25": {
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-26": {
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    }
+  },
+  "EFAZZ0001608": {
+    "2026-05-05": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 3
+      }
+    },
+    "2026-05-12": {
+      "切机调试": {
+        "RXQJ01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 2,
+        "TXYJ12": 3,
+        "TXYJ13": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1,
+        "TXRJ55": 1,
+        "TXRJ60": 1
+      }
+    },
+    "2026-05-13": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ03": 1,
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ10": 2
+      }
+    },
+    "2026-05-16": {
+      "Material Exception": {
+        "TXWL02": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    }
+  },
+  "EFAZZ0001615": {
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ02": 1
+      }
+    },
+    "2026-05-25": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-26": {
+      "Software Exception": {
+        "TXRJ05": 2
+      }
+    }
+  },
+  "EFAZZ0001861": {
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-09": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "RXYJ10": 1,
+        "RXYJ12": 1,
+        "RXYJ13": 1
+      },
+      "Software Exception": {
+        "RXRJ04": 2,
+        "RXRJ10": 2
+      }
+    },
+    "2026-05-13": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-14": {
+      "效验异常": {
+        "RXJY03": 1,
+        "RXJY05": 2
+      },
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      }
+    },
+    "2026-05-18": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1,
+        "RXRJ10": 2
+      }
+    },
+    "2026-05-22": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-25": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-26": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    }
+  },
+  "EFAZZ0001863": {
+    "2026-05-03": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-05": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 4,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-10": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-11": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-14": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-16": {
+      "Software Exception": {
+        "RXRJ04": 1
+      }
+    },
+    "2026-05-17": {
+      "效验异常": {
+        "RXJY03": 2
+      }
+    },
+    "2026-05-18": {
+      "Software Exception": {
+        "RXRJ10": 2
+      }
+    },
+    "2026-05-19": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-20": {
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ06": 1,
+        "RXRJ08": 3,
+        "RXRJ09": 2,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-21": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Software Exception": {
+        "RXRJ10": 2
+      }
+    },
+    "2026-05-22": {
+      "Software Exception": {
+        "RXRJ05": 2,
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    }
+  },
+  "EFAZZ2400191": {
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-03": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      },
+      "Software Exception": {
+        "RXRJ01": 1,
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-05": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-06": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Hardware Exception": {
+        "RXYJ60": 2
+      }
+    },
+    "2026-05-07": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ09": 3,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-09": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ54": 1,
+        "RXYJ59": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 2,
+        "RXRJ09": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-10": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "RXYJ13": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-11": {
+      "Software Exception": {
+        "RXRJ04": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    },
+    "2026-05-13": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ13": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-14": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-15": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-16": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-17": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Hardware Exception": {
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 2,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-18": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-19": {
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-20": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-21": {
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-22": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-23": {
+      "效验异常": {
+        "RXJY03": 2
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "RXRJ06": 2
+      }
+    },
+    "2026-05-25": {
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ10": 2
+      }
+    },
+    "2026-05-26": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    }
+  },
+  "ELLEN0000011": {
+    "2026-05-04": {
+      "Hardware Exception": {
+        "RXYJ12": 1,
+        "RXYJ13": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-05": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-08": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Hardware Exception": {
+        "RXYJ59": 1
+      }
+    },
+    "2026-05-13": {
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-16": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 2
+      }
+    },
+    "2026-05-19": {
+      "Software Exception": {
+        "RXRJ08": 2
+      }
+    },
+    "2026-05-20": {
+      "Software Exception": {
+        "RXRJ09": 2
+      }
+    },
+    "2026-05-21": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-22": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-23": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-26": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ13": 1
+      }
+    }
+  },
+  "EQPTZ2400147": {
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-03": {
+      "Software Exception": {
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-04": {
+      "Software Exception": {
+        "RXRJ05": 5,
+        "RXRJ06": 2
+      }
+    },
+    "2026-05-05": {
+      "Software Exception": {
+        "RXRJ05": 2,
+        "RXRJ06": 2,
+        "RXRJ09": 1,
+        "RXRJ10": 2
+      }
+    },
+    "2026-05-06": {
+      "Hardware Exception": {
+        "RXYJ09": 1,
+        "RXYJ13": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-07": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ11": 1,
+        "RXYJ14": 1,
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ06": 1,
+        "RXRJ09": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-13": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-16": {
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ09": 2
+      }
+    },
+    "2026-05-17": {
+      "Software Exception": {
+        "RXRJ03": 1,
+        "RXRJ05": 2,
+        "RXRJ08": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-18": {
+      "Software Exception": {
+        "RXRJ05": 4
+      }
+    },
+    "2026-05-19": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "RXYJ14": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "RXYJ10": 2
+      },
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "RXYJ10": 1,
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ09": 1,
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-23": {
+      "Software Exception": {
+        "RXRJ06": 2
+      }
+    },
+    "2026-05-24": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ16": 1
+      },
+      "Software Exception": {
+        "RXRJ02": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-25": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-26": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ04": 1
+      }
+    }
+  },
+  "EQPTZ2500008": {
+    "2026-05-02": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-03": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 4,
+        "TXYJ54": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ06": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-05": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ06": 1,
+        "TXRJ11": 1,
+        "TXRJ54": 1,
+        "TXRJ60": 1
+      }
+    },
+    "2026-05-06": {
+      "Material Exception": {
+        "TXWL02": 1,
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 4,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 2
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "TXYJ12": 2,
+        "TXYJ16": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-09": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ10": 1
+      }
+    },
+    "2026-05-10": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      }
+    },
+    "2026-05-11": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-12": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ10": 2,
+        "TXYJ12": 4
+      },
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-13": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ01": 1,
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 2
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ16": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-19": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "RXYJ10": 1,
+        "TXYJ05": 2,
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-23": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 5
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "TXYJ10": 3,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 3,
+        "TXRJ06": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-26": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 2,
+        "TXYJ10": 2,
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    }
+  },
+  "EQPTZ2500010": {
+    "2026-05-02": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-03": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ12": 2,
+        "TXYJ16": 1
+      }
+    },
+    "2026-05-06": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-08": {
+      "Software Exception": {
+        "TXRJ05": 2
+      }
+    },
+    "2026-05-09": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ07": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-10": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ07": 1
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "TXYJ10": 3,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 2
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "TXYJ12": 4
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ05": 3,
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 2
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ10": 2,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    }
+  },
+  "EQPTZ2501064": {
+    "2026-05-05": {
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-06": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-11": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-13": {
+      "Software Exception": {
+        "RXRJ08": 4
+      }
+    },
+    "2026-05-14": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-16": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-17": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    },
+    "2026-05-25": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    }
+  },
+  "EQPTZ2501065": {
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ08": 1,
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-03": {
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-04": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ08": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-05": {
+      "Software Exception": {
+        "RXRJ05": 2,
+        "RXRJ09": 2
+      }
+    },
+    "2026-05-07": {
+      "Software Exception": {
+        "RXRJ04": 1
+      }
+    },
+    "2026-05-08": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-09": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ14": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 2
+      }
+    },
+    "2026-05-10": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "TXYJ11": 1
+      }
+    },
+    "2026-05-12": {
+      "Personnel Misoperation": {
+        "RXRY01": 1
+      },
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 2,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-13": {
+      "Software Exception": {
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-14": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-15": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "RXYJ14": 1,
+        "RXYJ59": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-16": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-18": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 2
+      }
+    },
+    "2026-05-19": {
+      "Software Exception": {
+        "RXRJ05": 2,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-20": {
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "RXYJ04": 1,
+        "RXYJ13": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 3,
+        "RXRJ09": 1,
+        "RXRJ10": 2
+      }
+    },
+    "2026-05-21": {
+      "Software Exception": {
+        "RXRJ08": 2
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "RXYJ12": 1
+      },
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ08": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-25": {
+      "Material Exception": {
+        "HWDZ01": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "RXYJ12": 2
+      },
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    }
+  },
+  "EQPTZ2501066": {
+    "2026-05-05": {
+      "Hardware Exception": {
+        "RXYJ64": 1
+      }
+    },
+    "2026-05-07": {
+      "Software Exception": {
+        "RXRJ09": 2
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "RXYJ10": 1,
+        "RXYJ13": 1,
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "RXRJ06": 2,
+        "RXRJ09": 3
+      }
+    },
+    "2026-05-15": {
+      "Software Exception": {
+        "RXRJ05": 2,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-16": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ59": 1
+      },
+      "Software Exception": {
+        "RXRJ04": 1
+      }
+    },
+    "2026-05-17": {
+      "Software Exception": {
+        "RXRJ04": 1
+      }
+    },
+    "2026-05-25": {
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ08": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-26": {
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ09": 1
+      }
+    }
+  },
+  "EQPTZ2501067": {
+    "2026-05-02": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-03": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ10": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "MMYJ12": 1
+      }
+    },
+    "2026-05-09": {
+      "Hardware Exception": {
+        "TXYJ09": 1,
+        "TXYJ10": 2
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-12": {
+      "Software Exception": {
+        "TXRJ05": 2
+      }
+    },
+    "2026-05-13": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 7,
+        "TXYJ16": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 3
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ12": 4
+      },
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-25": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1,
+        "TXYJ13": 1
+      }
+    },
+    "2026-05-26": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    }
+  },
+  "EQPTZ2501068": {
+    "2026-05-01": {
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-02": {
+      "Material Exception": {
+        "TXWL53": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-03": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 9
+      },
+      "Software Exception": {
+        "TXRJ01": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ12": 10
+      }
+    },
+    "2026-05-06": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 5
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "RXYJ12": 1,
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-09": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-10": {
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 9
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ12": 10,
+        "TXYJ54": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ52": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-19": {
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ12": 10
+      }
+    },
+    "2026-05-21": {
+      "Material Exception": {
+        "HWDZ01": 1,
+        "TXWL01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 3,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 5
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ12": 5
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    }
+  },
+  "EQPTZ2501069": {
+    "2026-05-03": {
+      "Hardware Exception": {
+        "RXYJ14": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "RXYJ10": 2
+      },
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-23": {
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ08": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      },
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    }
+  },
+  "EQPTZ2501072": {
+    "2026-05-02": {
+      "Hardware Exception": {
+        "RXYJ09": 2
+      },
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-03": {
+      "Software Exception": {
+        "RXRJ05": 2,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "RXYJ60": 1
+      }
+    },
+    "2026-05-05": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 2
+      }
+    },
+    "2026-05-06": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-09": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-11": {
+      "Software Exception": {
+        "RXRJ04": 1
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "RXYJ09": 3,
+        "RXYJ14": 1,
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ01": 1,
+        "RXRJ05": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      },
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ05": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-15": {
+      "Software Exception": {
+        "RXRJ09": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-19": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-20": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      },
+      "Software Exception": {
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-22": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ10": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "RXYJ10": 1,
+        "RXYJ12": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "RXYJ10": 2
+      }
+    }
+  },
+  "EQPTZ2501073": {
+    "2026-04-30": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-01": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-02": {
+      "Material Exception": {
+        "TXWL51": 1,
+        "TXWL53": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ53": 1
+      }
+    },
+    "2026-05-06": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ11": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-09": {
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ10": 1
+      }
+    },
+    "2026-05-10": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ10": 1
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-13": {
+      "效验异常": {
+        "TXJY02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-14": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ06": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-16": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "TXYJ12": 1,
+        "TXYJ13": 1,
+        "TXYJ54": 1
+      },
+      "Software Exception": {
+        "TXRJ55": 1
+      }
+    },
+    "2026-05-26": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 2,
+        "TXRJ05": 1
+      }
+    }
+  },
+  "EQPTZ2501074": {
+    "2026-05-02": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    },
+    "2026-05-03": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-07": {
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-09": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-12": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ01": 1
+      }
+    },
+    "2026-05-13": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "RXYJ60": 1,
+        "RXYJ64": 1
+      },
+      "Software Exception": {
+        "RXRJ04": 2,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-15": {
+      "Material Exception": {
+        "HWDZ01": 1
+      }
+    },
+    "2026-05-16": {
+      "效验异常": {
+        "RXJY05": 1
+      },
+      "Hardware Exception": {
+        "RXYJ13": 1,
+        "RXYJ14": 1,
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ08": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "RXYJ51": 1
+      },
+      "Software Exception": {
+        "RXRJ03": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "RXYJ09": 1,
+        "RXYJ13": 2
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 2,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ09": 2
+      }
+    },
+    "2026-05-22": {
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "RXYJ10": 1,
+        "RXYJ54": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-23": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    },
+    "2026-05-26": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    }
+  },
+  "EQPTZ2501075": {
+    "2026-05-01": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-03": {
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-05": {
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-06": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-07": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-08": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      }
+    },
+    "2026-05-09": {
+      "切机调试": {
+        "RXQJ01": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-11": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-14": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ02": 2
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    }
+  },
+  "EQPTZ2501076": {
+    "2026-05-01": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-02": {
+      "Material Exception": {
+        "TXWL53": 1
+      }
+    },
+    "2026-05-03": {
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-07": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      }
+    },
+    "2026-05-08": {
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ07": 1
+      }
+    },
+    "2026-05-11": {
+      "切机调试": {
+        "TXQJ51": 1
+      },
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-15": {
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-18": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-25": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ13": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ11": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-26": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    }
+  },
+  "EQPTZ2501078": {
+    "2026-05-02": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-03": {
+      "Hardware Exception": {
+        "RXYJ04": 1
+      }
+    },
+    "2026-05-04": {
+      "Software Exception": {
+        "RXRJ06": 2
+      }
+    },
+    "2026-05-07": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-09": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-16": {
+      "Software Exception": {
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-17": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ10": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-18": {
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-19": {
+      "Software Exception": {
+        "RXRJ08": 4,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    },
+    "2026-05-22": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    }
+  },
+  "EQPTZ2501080": {
+    "2026-05-02": {
+      "Hardware Exception": {
+        "TXYJ05": 1
+      }
+    },
+    "2026-05-03": {
+      "Software Exception": {
+        "TXRJ54": 2
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "MMYJ12": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    },
+    "2026-05-15": {
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ06": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-17": {
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-18": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ05": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-20": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-21": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-23": {
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    }
+  },
+  "EQPTZ2501084": {
+    "2026-05-03": {
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ06": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-06": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-07": {
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-09": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-10": {
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 3,
+        "TXYJ54": 1
+      }
+    },
+    "2026-05-13": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ13": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-16": {
+      "Software Exception": {
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-17": {
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 6
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-21": {
+      "效验异常": {
+        "TXJY02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 2
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ05": 2,
+        "TXYJ10": 1,
+        "TXYJ12": 4
+      },
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ10": 1,
+        "TXRJ54": 2
+      }
+    },
+    "2026-05-24": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ05": 2
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "TXYJ10": 5,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ06": 1,
+        "TXRJ11": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-26": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 2
+      }
+    }
+  },
+  "EQPTZ2501085": {
+    "2026-05-01": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-02": {
+      "Hardware Exception": {
+        "TXYJ10": 3,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-03": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "RXRJ04": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-05": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ06": 1
+      }
+    },
+    "2026-05-06": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-07": {
+      "效验异常": {
+        "TXJY53": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-09": {
+      "Hardware Exception": {
+        "TXYJ12": 8
+      }
+    },
+    "2026-05-10": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 6
+      },
+      "Software Exception": {
+        "TXRJ54": 2
+      }
+    },
+    "2026-05-11": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Material Exception": {
+        "HWDZ01": 1,
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 4,
+        "TXYJ12": 6
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-12": {
+      "效验异常": {
+        "TXJY03": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 8
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-13": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ60": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-17": {
+      "Material Exception": {
+        "TXWL01": 1,
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-18": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-19": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ10": 2,
+        "TXYJ12": 12
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "TXYJ12": 6
+      }
+    },
+    "2026-05-21": {
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-22": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 5
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ10": 3,
+        "TXYJ12": 6,
+        "TXYJ14": 1,
+        "TXYJ54": 1
+      }
+    },
+    "2026-05-24": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 4
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "TXYJ10": 3,
+        "TXYJ12": 7
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ06": 1
+      }
+    }
+  },
+  "EQPTZ2501086": {
+    "2026-05-01": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-02": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-03": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1
+      },
+      "Software Exception": {
+        "RXRJ04": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-06": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ05": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-07": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-10": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ05": 1,
+        "TXYJ10": 3
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ10": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ05": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ10": 1
+      }
+    },
+    "2026-05-17": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 2,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ11": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-19": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-21": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Material Exception": {
+        "TXWL51": 1,
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 9
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-25": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 4
+      }
+    },
+    "2026-05-26": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ03": 1,
+        "TXYJ10": 3,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ54": 1
+      }
+    }
+  },
+  "EQPTZ2501087": {
+    "2026-05-02": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-03": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ54": 1
+      }
+    },
+    "2026-05-05": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-06": {
+      "Hardware Exception": {
+        "TXYJ10": 2
+      },
+      "Software Exception": {
+        "TXRJ10": 1
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-09": {
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-10": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ60": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-13": {
+      "Material Exception": {
+        "TXWL01": 1,
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 6
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ03": 1,
+        "TXYJ05": 1
+      },
+      "Software Exception": {
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 2
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 2
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "TXRJ05": 4
+      }
+    },
+    "2026-05-20": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-21": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Material Exception": {
+        "TXWL02": 2
+      },
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 2
+      }
+    },
+    "2026-05-22": {
+      "效验异常": {
+        "TXJY03": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 3
+      },
+      "Software Exception": {
+        "TXRJ02": 1,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 4
+      },
+      "Software Exception": {
+        "TXRJ06": 1
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-25": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 4,
+        "TXYJ12": 2,
+        "TXYJ54": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    }
+  },
+  "EQPTZ2501088": {
+    "2026-05-01": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-02": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-03": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 1,
+        "TXYJ13": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-04": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ10": 1,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ11": 2
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-08": {
+      "Personnel Misoperation": {
+        "TXRY51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ16": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-09": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-10": {
+      "Material Exception": {
+        "TXWL51": 2,
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ11": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "TXYJ03": 1,
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-14": {
+      "Software Exception": {
+        "TXRJ11": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-15": {
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-16": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-17": {
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-21": {
+      "Personnel Misoperation": {
+        "TXRY01": 2
+      },
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 5
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ10": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "TXYJ10": 2
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ12": 1,
+        "TXYJ54": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 2
+      }
+    }
+  },
+  "EQPTZ2501090": {
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-06": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-09": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-17": {
+      "效验异常": {
+        "RXJY03": 1,
+        "TXJY03": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ54": 3
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ54": 1
+      }
+    },
+    "2026-05-21": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ54": 1
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ06": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    }
+  },
+  "EQPTZ2501091": {
+    "2026-05-02": {
+      "Material Exception": {
+        "TXWL53": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-03": {
+      "Material Exception": {
+        "TXWL02": 1,
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ16": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-06": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "TXYJ12": 1,
+        "TXYJ13": 1
+      }
+    },
+    "2026-05-09": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-12": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ54": 2
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ12": 5
+      },
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-17": {
+      "切机调试": {
+        "RXQJ01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ11": 1,
+        "TXRJ54": 3
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-19": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ06": 1
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "TXYJ12": 3,
+        "TXYJ54": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-21": {
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-22": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-25": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    }
+  },
+  "EQPTZ2501095": {
+    "2026-05-02": {
+      "Hardware Exception": {
+        "RXYJ59": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "RXYJ09": 1
+      },
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-05": {
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-06": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-07": {
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-09": {
+      "Hardware Exception": {
+        "RXYJ59": 1,
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "RXYJ60": 2
+      }
+    },
+    "2026-05-12": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Software Exception": {
+        "RXRJ10": 1,
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    },
+    "2026-05-14": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    },
+    "2026-05-17": {
+      "Software Exception": {
+        "RXRJ08": 2,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 2
+      }
+    },
+    "2026-05-20": {
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "RXYJ12": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-23": {
+      "Software Exception": {
+        "RXRJ09": 2
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      },
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-25": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 2
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    }
+  },
+  "EQPTZ2501096": {
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "RXYJ60": 1
+      }
+    },
+    "2026-05-09": {
+      "效验异常": {
+        "TXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ60": 2
+      },
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-10": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-11": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-12": {
+      "Software Exception": {
+        "RXRJ08": 2,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-14": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ08": 2,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-15": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-16": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-17": {
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-18": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    }
+  },
+  "EQPTZ2501098": {
+    "2026-05-02": {
+      "Material Exception": {
+        "TXWL53": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-03": {
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 1,
+        "TXYJ16": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ56": 1
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-06": {
+      "Hardware Exception": {
+        "TXYJ12": 4
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ02": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-08": {
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-09": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-10": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-11": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 2
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-13": {
+      "效验异常": {
+        "TXJY02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 5
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ12": 4
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ12": 6
+      },
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-23": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "TXRJ54": 2
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 2
+      }
+    }
+  },
+  "EQPTZ2501100": {
+    "2026-05-01": {
+      "Hardware Exception": {
+        "RXYJ60": 1
+      },
+      "Software Exception": {
+        "RXRJ02": 1
+      }
+    },
+    "2026-05-08": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ12": 1
+      }
+    },
+    "2026-05-22": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-23": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    }
+  },
+  "EQPTZ2501101": {
+    "2026-05-02": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ10": 2
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-08": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-09": {
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ10": 2,
+        "TXRJ11": 2
+      }
+    },
+    "2026-05-10": {
+      "切机调试": {
+        "RXQJ01": 1
+      },
+      "Software Exception": {
+        "TXRJ10": 2,
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-11": {
+      "Material Exception": {
+        "TXWL02": 1
+      }
+    },
+    "2026-05-14": {
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    }
+  },
+  "EQPTZ2501102": {
+    "2026-05-03": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 3,
+        "TXYJ16": 1,
+        "TXYJ54": 1
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-06": {
+      "效验异常": {
+        "TXJY03": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "TXYJ54": 1
+      }
+    },
+    "2026-05-09": {
+      "Hardware Exception": {
+        "TXYJ11": 1
+      }
+    },
+    "2026-05-10": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-11": {
+      "Material Exception": {
+        "HWDZ01": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 3
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ05": 2,
+        "TXYJ16": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1,
+        "TXYJ16": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-16": {
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-17": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "TXYJ12": 1,
+        "TXYJ54": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1,
+        "TXRJ06": 1
+      }
+    },
+    "2026-05-23": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      }
+    },
+    "2026-05-24": {
+      "Personnel Misoperation": {
+        "TXRY01": 2
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-26": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    }
+  },
+  "EQPTZ2501103": {
+    "2026-05-03": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      }
+    },
+    "2026-05-04": {
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ10": 1
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-10": {
+      "Hardware Exception": {
+        "TXYJ05": 1
+      }
+    },
+    "2026-05-12": {
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-14": {
+      "Material Exception": {
+        "TXWL51": 1
+      }
+    },
+    "2026-05-15": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 3,
+        "TXYJ16": 1
+      },
+      "Software Exception": {
+        "TXRJ01": 2
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ05": 2
+      },
+      "Software Exception": {
+        "TXRJ01": 1,
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-20": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1,
+        "TXYJ16": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-21": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 4,
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-22": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ05": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-24": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    }
+  },
+  "EQPTZ2501105": {
+    "2026-05-01": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ06": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-03": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-04": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-05": {
+      "效验异常": {
+        "RXJY05": 1
+      },
+      "Hardware Exception": {
+        "RXYJ54": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-06": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-07": {
+      "切机调试": {
+        "RXQJ01": 1
+      },
+      "Hardware Exception": {
+        "RXYJ13": 1
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "RXYJ54": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-14": {
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "RXYJ01": 1
+      }
+    },
+    "2026-05-19": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-21": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-22": {
+      "Software Exception": {
+        "RXRJ05": 2
+      }
+    }
+  },
+  "EYHJE2400018": {
+    "2026-05-04": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-11": {
+      "Software Exception": {
+        "TXRJ53": 1
+      }
+    },
+    "2026-05-12": {
+      "效验异常": {
+        "TXJY53": 1
+      },
+      "Material Exception": {
+        "TXWL51": 1,
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "HWYJ16": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 4
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-13": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ56": 1
+      }
+    },
+    "2026-05-14": {
+      "Material Exception": {
+        "TXWL51": 4
+      },
+      "Hardware Exception": {
+        "TXYJ10": 3
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-15": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Material Exception": {
+        "HWDZ01": 1,
+        "TXWL51": 2
+      },
+      "Hardware Exception": {
+        "TXYJ10": 3,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-16": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-17": {
+      "Personnel Misoperation": {
+        "TXRY51": 1
+      },
+      "Material Exception": {
+        "TXWL01": 2,
+        "TXWL51": 3
+      },
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ03": 1,
+        "TXYJ10": 2,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-18": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-19": {
+      "Material Exception": {
+        "TXWL51": 3
+      },
+      "Hardware Exception": {
+        "TXYJ10": 3
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-20": {
+      "Material Exception": {
+        "TXWL51": 4
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-21": {
+      "Material Exception": {
+        "TXWL51": 1
+      }
+    },
+    "2026-05-22": {
+      "Material Exception": {
+        "TXWL51": 3,
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 2,
+        "TXRJ11": 2,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-23": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Material Exception": {
+        "TXWL51": 2
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-25": {
+      "效验异常": {
+        "TXJY53": 1
+      },
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 3
+      }
+    },
+    "2026-05-26": {
+      "Material Exception": {
+        "TXWL51": 3
+      },
+      "Hardware Exception": {
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1,
+        "TXRJ54": 2,
+        "TXRJ55": 1
+      }
+    }
+  },
+  "EYHJE2400044": {
+    "2026-05-04": {
+      "Software Exception": {
+        "TXRJ07": 1,
+        "TXRJ56": 1
+      }
+    },
+    "2026-05-11": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "MMYJ12": 1
+      }
+    },
+    "2026-05-14": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 3
+      },
+      "Software Exception": {
+        "TXRJ55": 1,
+        "TXRJ60": 1
+      }
+    },
+    "2026-05-16": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ13": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-18": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ10": 4
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "MMYJ12": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-22": {
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ12": 5
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 4
+      },
+      "Software Exception": {
+        "TXRJ55": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 5
+      }
+    }
+  },
+  "EYHJE2400046": {
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ12": 3
+      }
+    },
+    "2026-05-25": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ10": 2,
+        "TXYJ12": 7
+      }
+    }
+  },
+  "EZDYH0000121": {
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ10": 2,
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-03": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-05": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-08": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-09": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-11": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-13": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-15": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ13": 2
+      },
+      "Software Exception": {
+        "RXRJ04": 1,
+        "RXRJ05": 1,
+        "RXRJ09": 1,
+        "TXRJ06": 1
+      }
+    },
+    "2026-05-16": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ60": 1
+      }
+    },
+    "2026-05-22": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-25": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ09": 1,
+        "RXYJ13": 1,
+        "RXYJ60": 2
+      },
+      "Software Exception": {
+        "RXRJ06": 1
+      }
+    }
+  },
+  "EZDYH2400085": {
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-03": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-04": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-06": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-07": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-14": {
+      "效验异常": {
+        "RXJY05": 1
+      }
+    },
+    "2026-05-22": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    }
+  },
+  "EZDYH2400098": {
+    "2026-05-01": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-03": {
+      "Software Exception": {
+        "RXRJ10": 1,
+        "TXRJ01": 2
+      }
+    },
+    "2026-05-04": {
+      "效验异常": {
+        "RXJY05": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 2
+      }
+    },
+    "2026-05-05": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      },
+      "Software Exception": {
+        "RXRJ10": 1,
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-08": {
+      "效验异常": {
+        "RXJY03": 2
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ08": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-11": {
+      "Software Exception": {
+        "RXRJ04": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "RXYJ59": 1
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "RXYJ59": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "RXYJ59": 1
+      }
+    },
+    "2026-05-16": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-17": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-19": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "RXYJ59": 1
+      },
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-22": {
+      "Software Exception": {
+        "RXRJ06": 2
+      }
+    },
+    "2026-05-23": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    }
+  },
+  "EZDYH2400101": {
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-03": {
+      "Software Exception": {
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-06": {
+      "Software Exception": {
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-08": {
+      "Software Exception": {
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-09": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-10": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-12": {
+      "Hardware Exception": {
+        "RXYJ10": 1
+      }
+    },
+    "2026-05-13": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-18": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "RXYJ54": 1
+      }
+    },
+    "2026-05-25": {
+      "Hardware Exception": {
+        "RXYJ12": 1
+      }
+    },
+    "2026-05-26": {
+      "Software Exception": {
+        "RXRJ06": 2
+      }
+    }
+  },
+  "EZDYH2400102": {
+    "2026-05-04": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-10": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-13": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-14": {
+      "Software Exception": {
+        "RXRJ04": 1
+      }
+    },
+    "2026-05-16": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "RXYJ59": 1
+      }
+    }
+  },
+  "EZDYH2400118": {
+    "2026-05-05": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-12": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-13": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      }
+    },
+    "2026-05-21": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-22": {
+      "效验异常": {
+        "RXJY03": 1
+      }
+    },
+    "2026-05-23": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    }
+  },
+  "EZDYH2400126": {
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ05": 2
+      }
+    },
+    "2026-05-03": {
+      "Software Exception": {
+        "RXRJ06": 1,
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-05": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-06": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-12": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ16": 1,
+        "RXYJ54": 1
+      }
+    },
+    "2026-05-13": {
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-14": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      }
+    },
+    "2026-05-16": {
+      "Software Exception": {
+        "RXRJ05": 1
+      }
+    },
+    "2026-05-18": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Hardware Exception": {
+        "RXYJ60": 2
+      },
+      "Software Exception": {
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-19": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "RXYJ60": 1
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    },
+    "2026-05-25": {
+      "Software Exception": {
+        "RXRJ10": 1
+      }
+    }
+  },
+  "EZDYH2400132": {
+    "2026-05-02": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-07": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-08": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-09": {
+      "Software Exception": {
+        "RXRJ09": 1
+      }
+    },
+    "2026-05-10": {
+      "Material Exception": {
+        "HWDZ01": 1
+      },
+      "Hardware Exception": {
+        "RXYJ12": 2
+      }
+    },
+    "2026-05-13": {
+      "Software Exception": {
+        "RXRJ08": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "RXYJ13": 1
+      }
+    },
+    "2026-05-17": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ09": 2
+      }
+    },
+    "2026-05-21": {
+      "Software Exception": {
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-22": {
+      "效验异常": {
+        "RXJY03": 1
+      },
+      "Software Exception": {
+        "RXRJ08": 2
+      }
+    },
+    "2026-05-23": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ06": 1
+      }
+    },
+    "2026-05-25": {
+      "Software Exception": {
+        "RXRJ05": 1,
+        "RXRJ06": 1,
+        "RXRJ08": 1
+      }
+    }
+  },
+  "EZDYH2400213": {
+    "2026-05-01": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-03": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-09": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-14": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-16": {
+      "Hardware Exception": {
+        "TXYJ15": 1
+      },
+      "Software Exception": {
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-17": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-18": {
+      "Hardware Exception": {
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1,
+        "TXYJ12": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 2
+      }
+    },
+    "2026-05-20": {
+      "Material Exception": {
+        "TXWL51": 1
+      }
+    },
+    "2026-05-21": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-24": {
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-25": {
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-26": {
+      "Material Exception": {
+        "TXWL52": 1
+      },
+      "Software Exception": {
+        "TXRJ60": 1
+      }
+    }
+  },
+  "EZDYH2400214": {
+    "2026-05-02": {
+      "Hardware Exception": {
+        "MMYJ12": 1
+      }
+    },
+    "2026-05-05": {
+      "Personnel Misoperation": {
+        "TXRY01": 1
+      },
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ11": 1
+      }
+    },
+    "2026-05-06": {
+      "Material Exception": {
+        "TXWL02": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 1
+      }
+    },
+    "2026-05-07": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-08": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 2
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-10": {
+      "Hardware Exception": {
+        "TXYJ10": 1,
+        "TXYJ12": 4
+      },
+      "Software Exception": {
+        "TXRJ01": 1
+      }
+    },
+    "2026-05-11": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 4
+      }
+    },
+    "2026-05-12": {
+      "效验异常": {
+        "TXJY03": 1
+      },
+      "Hardware Exception": {
+        "TXYJ05": 1
+      }
+    },
+    "2026-05-13": {
+      "Hardware Exception": {
+        "TXYJ10": 2
+      }
+    },
+    "2026-05-15": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-17": {
+      "Hardware Exception": {
+        "MMYJ12": 1,
+        "TXYJ05": 1
+      },
+      "Software Exception": {
+        "RXRJ09": 1,
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-19": {
+      "Hardware Exception": {
+        "TXYJ10": 2,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-20": {
+      "Hardware Exception": {
+        "TXYJ10": 1
+      }
+    },
+    "2026-05-21": {
+      "Hardware Exception": {
+        "TXYJ05": 1,
+        "TXYJ12": 2
+      }
+    },
+    "2026-05-24": {
+      "Hardware Exception": {
+        "TXYJ10": 3
+      },
+      "Software Exception": {
+        "TXRJ54": 1
+      }
+    },
+    "2026-05-25": {
+      "Material Exception": {
+        "TXWL51": 1
+      },
+      "Hardware Exception": {
+        "TXYJ10": 1
+      },
+      "Software Exception": {
+        "TXRJ05": 1
+      }
+    },
+    "2026-05-26": {
+      "Hardware Exception": {
+        "TXYJ10": 2
+      }
+    }
+  }
+}

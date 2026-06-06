@@ -1,0 +1,1102 @@
+{
+  "EQPTZ2501066": {
+    "sapCode": "000004016413",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501066",
+    "location": "C-2-4F-BR10"
+  },
+  "EQPTZ2501064": {
+    "sapCode": "000004016411",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501064",
+    "location": "C-2-4F-BR10"
+  },
+  "EFAZZ0001856": {
+    "sapCode": "000004007532",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001856",
+    "location": "C-2-4F-BR08"
+  },
+  "EQPTZ2500005": {
+    "sapCode": "000004011528",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "ATXLDDA02",
+    "abbreviation": "EQPTZ2500005",
+    "location": "C-2-4F-BR03"
+  },
+  "EFAZZ0001737": {
+    "sapCode": "000004008507",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001737",
+    "location": "C-2-4F-BR09"
+  },
+  "EZDYH2400194": {
+    "sapCode": "000004013824",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "LD LENS",
+    "abbreviation": "EZDYH2400194",
+    "location": "C-2-4F-BR03"
+  },
+  "EQPTZ2501096": {
+    "sapCode": "000004016443",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501096",
+    "location": "C-2-4F-BR10"
+  },
+  "EFAZZ0001606": {
+    "sapCode": "000004007000",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001606",
+    "location": "C-2-4F-BR04"
+  },
+  "EQPTZ2501090": {
+    "sapCode": "000004016437",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EQPTZ2501090",
+    "location": "C-2-4F-BR05"
+  },
+  "EZDYH2400191": {
+    "sapCode": "000004013822",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "LD LENS",
+    "abbreviation": "EZDYH2400191",
+    "location": "C-2-4F-BR03"
+  },
+  "EFAZZ0000924": {
+    "sapCode": "000004004473",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0000924",
+    "location": "C-2-4F-BR10"
+  },
+  "EQPTZ2501085": {
+    "sapCode": "000004016432",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501085",
+    "location": "C-2-4F-BR04"
+  },
+  "EQPTZ2501069": {
+    "sapCode": "000004016416",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501069",
+    "location": "C-2-4F-BR09"
+  },
+  "EQPTZ2501072": {
+    "sapCode": "000004016419",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501072",
+    "location": "C-2-4F-BR10"
+  },
+  "EQPTZ2501095": {
+    "sapCode": "000004016442",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501095",
+    "location": "C-2-4F-BR10"
+  },
+  "EFAZZ0001566": {
+    "sapCode": "000004006769",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "ATXLDDA02",
+    "abbreviation": "EFAZZ0001566",
+    "location": "C-2-4F-BR11"
+  },
+  "EFAZZ0001007": {
+    "sapCode": "000004004939",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001007",
+    "location": "C-2-4F-BR10"
+  },
+  "EYHJE2400044": {
+    "sapCode": "000004014972",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "800G _UVOH",
+    "abbreviation": "EYHJE2400044",
+    "location": "C-2-4F-BR04"
+  },
+  "EZDYH2400096": {
+    "sapCode": "000004011682",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EZDYH2400096",
+    "location": "C-2-4F-BR08"
+  },
+  "EYHJE2400027": {
+    "sapCode": "000004014483",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "800G_UVOH",
+    "abbreviation": "EYHJE2400027",
+    "location": "C-2-4F-BR11"
+  },
+  "EQPTZ2501101": {
+    "sapCode": "000004016448",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501101",
+    "location": "C-2-4F-BR10"
+  },
+  "EFAZZ0001565": {
+    "sapCode": "000004006768",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "800G_UVOH",
+    "abbreviation": "EFAZZ0001565",
+    "location": "C-2-4F-BR11"
+  },
+  "EFAZZ0001043": {
+    "sapCode": "000004005812",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001043",
+    "location": "C-2-4F-BR09"
+  },
+  "EZDYH2400196": {
+    "sapCode": "000004009903",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "LD LENS",
+    "abbreviation": "EZDYH2400196",
+    "location": "C-2-4F-BR03"
+  },
+  "EZDYH2400071": {
+    "sapCode": "000004011678",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EZDYH2400071",
+    "location": "C-2-4F-BR08"
+  },
+  "EQPTZ2501089": {
+    "sapCode": "000004016436",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501089",
+    "location": "C-2-4F-BR03"
+  },
+  "EFAZZ0001602": {
+    "sapCode": "000004006996",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EFAZZ0001602",
+    "location": "C-2-4F-BR11"
+  },
+  "EQPTZ2501087": {
+    "sapCode": "000004016434",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EQPTZ2501087",
+    "location": "C-2-4F-BR05"
+  },
+  "EZDYH2400051": {
+    "sapCode": "000004009708",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EZDYH2400051",
+    "location": "C-2-4F-BR03"
+  },
+  "EFAZZ2400673": {
+    "sapCode": "000004009893",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "LD LENS",
+    "abbreviation": "EFAZZ2400673",
+    "location": "C-2-4F-BR03"
+  },
+  "EQPTZ2501105": {
+    "sapCode": "000004016452",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "ATXLDDA",
+    "abbreviation": "EQPTZ2501105",
+    "location": "C-2-4F-BR09"
+  },
+  "EQPTZ2501074": {
+    "sapCode": "000004016421",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501074",
+    "location": "C-2-4F-BR10"
+  },
+  "EFAZZ0001848": {
+    "sapCode": "000004007508",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001848",
+    "location": "C-2-4F-BR09"
+  },
+  "EFAZZ0000923": {
+    "sapCode": "000004004457",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0000923",
+    "location": "C-2-4F-BR10"
+  },
+  "EQPTZ2501102": {
+    "sapCode": "000004016449",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501102",
+    "location": "C-2-4F-BR10"
+  },
+  "EQPTZ2400148": {
+    "sapCode": "000004008427",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "800G _UVOH",
+    "abbreviation": "EQPTZ2400148",
+    "location": "C-2-4F-BR08"
+  },
+  "EFAZZ0000282": {
+    "sapCode": "000004001083",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "SIO_UVOH",
+    "abbreviation": "EFAZZ0000282",
+    "location": "C-2-4F-BR10"
+  },
+  "EQPTZ2501082": {
+    "sapCode": "000004016429",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501082",
+    "location": "C-2-4F-BR09"
+  },
+  "EFAZZ0001042": {
+    "sapCode": "000004005811",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001042",
+    "location": "C-2-4F-BR09"
+  },
+  "EFAZZ0000975": {
+    "sapCode": "000004004771",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0000975",
+    "location": "C-2-4F-BR10"
+  },
+  "EQPTZ2501081": {
+    "sapCode": "000004016428",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501081",
+    "location": "C-2-4F-BR09"
+  },
+  "EYHJE2400018": {
+    "sapCode": "000004014967",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "800G _UVOH",
+    "abbreviation": "EYHJE2400018",
+    "location": "C-2-4F-BR04"
+  },
+  "EFAZZ0001605": {
+    "sapCode": "000004006999",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EFAZZ0001605",
+    "location": "C-2-4F-BR04"
+  },
+  "EFAZZ0001615": {
+    "sapCode": "000004007510",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001615",
+    "location": "C-2-4F-BR11"
+  },
+  "EZDYH2400133": {
+    "sapCode": "000004009863",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EZDYH2400133",
+    "location": "C-2-4F-BR08"
+  },
+  "EFAZZ0001006": {
+    "sapCode": "000004004935",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001006",
+    "location": "C-2-4F-BR10"
+  },
+  "EQPTZ2501091": {
+    "sapCode": "000004016438",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EQPTZ2501091",
+    "location": "C-2-4F-BR05"
+  },
+  "EQPTZ2501103": {
+    "sapCode": "000004016450",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501103",
+    "location": "C-2-4F-BR10"
+  },
+  "EQPTZ2501079": {
+    "sapCode": "000004016426",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501079",
+    "location": "C-2-4F-BR04"
+  },
+  "EQPTZ2500004": {
+    "sapCode": "000004011527",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "ATXLDDA02",
+    "abbreviation": "EQPTZ2500004",
+    "location": "C-2-4F-BR03"
+  },
+  "EFAZZ2400191": {
+    "sapCode": "000004006732",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G -UVOH",
+    "abbreviation": "EFAZZ2400191",
+    "location": "C-2-4F-BR08"
+  },
+  "EQPTZ2400292": {
+    "sapCode": "000004013833",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EQPTZ2400292",
+    "location": "C-2-4F-BR03"
+  },
+  "EZDYH2400090": {
+    "sapCode": "000004010085",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EZDYH2400090",
+    "location": "C-2-4F-BR08"
+  },
+  "EZDYH2400054": {
+    "sapCode": "000004009705",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EZDYH2400054",
+    "location": "C-2-4F-BR08"
+  },
+  "EFAZZ0001855": {
+    "sapCode": "000004007531",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001855",
+    "location": "C-2-4F-BR09"
+  },
+  "EZDYH2400126": {
+    "sapCode": "000004011683",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G-UVOH",
+    "abbreviation": "EZDYH2400126",
+    "location": "C-2-4F-BR09"
+  },
+  "EFAZZ0000972": {
+    "sapCode": "000004004768",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0000972",
+    "location": "C-2-4F-BR10"
+  },
+  "EFAZZ0001646": {
+    "sapCode": "000004007613",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "ATXLDDA02",
+    "abbreviation": "EFAZZ0001646",
+    "location": "C-2-4F-BR11"
+  },
+  "EYHJE2400046": {
+    "sapCode": "000004014966",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "800G _UVOH",
+    "abbreviation": "EYHJE2400046",
+    "location": "C-2-4F-BR11"
+  },
+  "EQPTZ2400232": {
+    "sapCode": "000004013819",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "LD LENS",
+    "abbreviation": "EQPTZ2400232",
+    "location": "C-2-4F-BR03"
+  },
+  "EYHJE2400028": {
+    "sapCode": "000004014964",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "800G_UVOH",
+    "abbreviation": "EYHJE2400028",
+    "location": "C-2-4F-BR11"
+  },
+  "EFAZZ0001608": {
+    "sapCode": "000004007002",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001608",
+    "location": "C-2-4F-BR04"
+  },
+  "EFAZZ0001601": {
+    "sapCode": "000004006995",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EFAZZ0001601",
+    "location": "C-2-4F-BR11"
+  },
+  "EZDYH2400195": {
+    "sapCode": "000004009841",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "LD LENS AA",
+    "abbreviation": "EZDYH2400195",
+    "location": "C-2-4F-BR05"
+  },
+  "EFAZZ0001845": {
+    "sapCode": "000004007505",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001845",
+    "location": "C-2-4F-BR09"
+  },
+  "EFAZZ0001607": {
+    "sapCode": "000004007001",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EFAZZ0001607",
+    "location": "C-2-4F-BR04"
+  },
+  "EFAZZ0000852": {
+    "sapCode": "000004004838",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "800G_UVOH",
+    "abbreviation": "EFAZZ0000852",
+    "location": "C-2-4F-BR05"
+  },
+  "EFAZZ0001734": {
+    "sapCode": "000004008496",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EFAZZ0001734",
+    "location": "C-2-4F-BR11"
+  },
+  "EZDYH2400085": {
+    "sapCode": "000004011680",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EZDYH2400085",
+    "location": "C-2-4F-BR08"
+  },
+  "EFAZZ0000973": {
+    "sapCode": "000004004769",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0000973",
+    "location": "C-2-4F-BR10"
+  },
+  "EQPTZ2501098": {
+    "sapCode": "000004016445",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501098",
+    "location": "C-2-4F-BR10"
+  },
+  "EQPTZ2501071": {
+    "sapCode": "000004016418",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501071",
+    "location": "C-2-4F-BR05"
+  },
+  "EQPTZ2501065": {
+    "sapCode": "000004016412",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501065",
+    "location": "C-2-4F-BR10"
+  },
+  "EFAZZ0000842": {
+    "sapCode": "000004004645",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "SIO-UVOH",
+    "abbreviation": "EFAZZ0000842",
+    "location": "C-2-4F-BR09"
+  },
+  "EFAZZ0001005": {
+    "sapCode": "000004004934",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001005",
+    "location": "C-2-4F-BR10"
+  },
+  "EFAZZ0001862": {
+    "sapCode": "000004007550",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001862",
+    "location": "C-2-4F-BR08"
+  },
+  "EFAZZ0001769": {
+    "sapCode": "000004008852",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001769",
+    "location": "C-2-4F-BR08"
+  },
+  "EFAZZ0001604": {
+    "sapCode": "000004006998",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001604",
+    "location": "C-2-4F-BR05"
+  },
+  "EZDYH2400101": {
+    "sapCode": "000004010087",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EZDYH2400101",
+    "location": "C-2-4F-BR09"
+  },
+  "EQPTZ2500008": {
+    "sapCode": "000004011531",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "ATXLDDA02",
+    "abbreviation": "EQPTZ2500008",
+    "location": "C-2-4F-BR05"
+  },
+  "EFAZZ0001849": {
+    "sapCode": "000004007509",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001849",
+    "location": "C-2-4F-BR08"
+  },
+  "EQPTZ2501067": {
+    "sapCode": "000004016414",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EQPTZ2501067",
+    "location": "C-2-4F-BR05"
+  },
+  "EFAZZ0000815": {
+    "sapCode": "000004004454",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "LD LENS AA",
+    "abbreviation": "EFAZZ0000815",
+    "location": "C-2-4F-BR11"
+  },
+  "EFAZZ0001045": {
+    "sapCode": "000004005814",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001045",
+    "location": "C-2-4F-BR09"
+  },
+  "EQPTZ2500010": {
+    "sapCode": "000004011533",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "ATXLDDA",
+    "abbreviation": "EQPTZ2500010",
+    "location": "C-2-4F-BR16"
+  },
+  "EFAZZ0000922": {
+    "sapCode": "000004004456",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0000922",
+    "location": "C-2-4F-BR09"
+  },
+  "ELLEN0000011": {
+    "sapCode": "000004009630",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "ELLEN0000011",
+    "location": "C-2-4F-BR08"
+  },
+  "EYHJE2400025": {
+    "sapCode": "000004014973",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "",
+    "type": "Devicepackagingtesting",
+    "model": "800G_UVOH",
+    "abbreviation": "EYHJE2400025",
+    "location": "C-2-4F-BR11"
+  },
+  "EZDYH2400102": {
+    "sapCode": "000004010088",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EZDYH2400102",
+    "location": "C-2-4F-BR09"
+  },
+  "EQPTZ2501104": {
+    "sapCode": "000004016451",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "ATXLDDA",
+    "abbreviation": "EQPTZ2501104",
+    "location": "C-2-4F-BR08"
+  },
+  "EQPTZ2500003": {
+    "sapCode": "000004011526",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "ATXLDDA02",
+    "abbreviation": "EQPTZ2500003",
+    "location": "C-2-4F-BR03"
+  },
+  "EZDYH2400088": {
+    "sapCode": "000004013830",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EZDYH2400088",
+    "location": "C-2-4F-BR03"
+  },
+  "EFAZZ0001600": {
+    "sapCode": "000004006994",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EFAZZ0001600",
+    "location": "C-2-4F-BR11"
+  },
+  "EFAZZ0001847": {
+    "sapCode": "000004007507",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001847",
+    "location": "C-2-4F-BR09"
+  },
+  "EFAZZ0001735": {
+    "sapCode": "000004008497",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EFAZZ0001735",
+    "location": "C-2-4F-BR11"
+  },
+  "EFAZZ0001733": {
+    "sapCode": "000004008489",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "800G _UVOH",
+    "abbreviation": "EFAZZ0001733",
+    "location": "C-2-4F-BR05"
+  },
+  "EFAZZ0000853": {
+    "sapCode": "000004004839",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EFAZZ0000853",
+    "location": "C-2-4F-BR05"
+  },
+  "EZDYH2400098": {
+    "sapCode": "000004010086",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EZDYH2400098",
+    "location": "C-2-4F-BR08"
+  },
+  "EFAZZ0001044": {
+    "sapCode": "000004005813",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "FA AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001044",
+    "location": "C-2-4F-BR09"
+  },
+  "EFAZZ0000859": {
+    "sapCode": "000004004905",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "LD LENS",
+    "abbreviation": "EFAZZ0000859",
+    "location": "C-2-4F-BR05"
+  },
+  "EFAZZ0001041": {
+    "sapCode": "000004005809",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "LD LENS AA",
+    "abbreviation": "EFAZZ0001041",
+    "location": "C-2-4F-BR05"
+  },
+  "EYHJE2400029": {
+    "sapCode": "000004014481",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EYHJE2400029",
+    "location": "C-2-4F-BR11"
+  },
+  "EQPTZ2501093": {
+    "sapCode": "000004016440",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501093",
+    "location": "C-2-4F-BR04"
+  },
+  "EQPTZ2501077": {
+    "sapCode": "000004016424",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501077",
+    "location": "C-2-4F-BR04"
+  },
+  "EFAZZ0001599": {
+    "sapCode": "000004006993",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EFAZZ0001599",
+    "location": "C-2-4F-BR05"
+  },
+  "EQPTZ2501088": {
+    "sapCode": "000004016435",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501088",
+    "location": "C-2-4F-BR04"
+  },
+  "EFAZZ0001625": {
+    "sapCode": "000004007533",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "800G_UVOH",
+    "abbreviation": "EFAZZ0001625",
+    "location": "C-2-4F-BR11"
+  },
+  "EZDYH2400213": {
+    "sapCode": "000004009884",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G_UVOH",
+    "abbreviation": "EZDYH2400213",
+    "location": "C-2-4F-BR05"
+  },
+  "EYHJE0000112": {
+    "sapCode": "000004014974",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "100G_UVOH",
+    "abbreviation": "EYHJE0000112",
+    "location": "C-2-4F-BR11"
+  },
+  "EQPTZ2501086": {
+    "sapCode": "000004016433",
+    "name": "Automatic coupling machine",
+    "station": "AA",
+    "site": "LD AA",
+    "type": "Devicepackagingtesting",
+    "model": "400G _UVOH",
+    "abbreviation": "EQPTZ2501086",
+    "location": "C-2-4F-BR04"
+  }
+}
