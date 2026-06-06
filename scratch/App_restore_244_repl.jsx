@@ -1,0 +1,1 @@
+"    console.log('[FaultCategories Debug]', { targetAssetsCount: targetAssets.length, matchedAssets, matchedDates, pickerStart, pickerEnd, categoryCounts });\n\n"

@@ -1,0 +1,183 @@
+Technical Specification
+Equipment Downtime Data Extraction Tool
+Project: TERAHOP Thailand — Equipment Utilization Monitoring
+Prepared by: Copter (Active Alignment Leader Engineer)
+Version: 1.0  |  Date: May 2026
+1. ภาพรวมโครงการ (Project Overview)
+ปัจจุบันการดึงข้อมูล Downtime % ของแต่ละเครื่องต้องทำทีละ Asset Code ผ่านหน้าเว็บ ซึ่งใช้เวลามากและเกิด human error ได้ง่าย
+เครื่องมือนี้จะ automate การดึงข้อมูลจาก TERAHOP EAM API โดยอัตโนมัติ สำหรับหลาย Asset Code พร้อมกัน และ export ผลลัพธ์เป็น Excel รายวัน พร้อม Downtime % สำเร็จรูป
+1.1 วัตถุประสงค์
+ดึงข้อมูล Downtime รายวันของทุกเครื่องในครั้งเดียว
+คำนวณ Downtime % โดยอัตโนมัติ ไม่ต้องคำนวณมือ
+Export เป็น Excel พร้อมใช้งาน / วิเคราะห์ต่อได้ทันที
+รองรับการ schedule รันอัตโนมัติทุกวัน (optional)
+1.2 Scope
+ระบบ: TERAHOP EAM — Device Utilization Report
+URL: http://10.190.0.184:8080/eam/report_management/eqp_report/eqp_utilization_rate
+Station: AA (ขยายได้ภายหลัง)
+Output: Excel file รายวัน / รายสัปดาห์
+2. สูตรการคำนวณ (Calculation Logic)
+2.1 Total Available Time ต่อเครื่อง
+เนื่องจาก API ไม่ได้ส่ง Total Available Time มาโดยตรง ต้องคำนวณจาก:
+Total_i  = RunTime_i ÷ Utilization_iตัวอย่าง: RunTime = 158.806h, Utilization = 0.87944Total_i  = 158.806 ÷ 0.87944 = 180.58h
+2.2 Downtime % ต่อเครื่อง (รายวัน)
+Downtime%_i = (Downtime_i ÷ Total_i) × 100
+2.3 Overall Downtime % (ทุกเครื่องรวมกัน)
+Downtime%_overall = (Σ Downtime_i) ÷ (Σ Total_i) × 100หมายเหตุ: ใช้ weighted sum — ไม่ใช่ averageเครื่องที่ Utilization = 0% → exclude ออกจากการคำนวณ (หาร 0 ไม่ได้)
+2.4 KPI Reference
+Category
+Formula
+KPI Target
+Unit
+Priority
+Running (Utilization)
+Run Time / Total × 100
+≥86%
+%
+High
+Idle
+(Total − Run − Down) / Total × 100
+≤10.3%
+%
+High
+Downtime (Maintenance)
+Downtime / Total × 100
+≤3.5%
+%
+High
+Planned Maintenance
+Planned Down / Total × 100
+≤0.2%
+%
+Medium
+3. สถาปัตยกรรมระบบ (System Architecture)
+[ config.json ]        [ asset_list.txt ]       │                       │       └───────[ main.py ]───────┘                           │                  [ API caller module ]                           │  HTTP GET/POST loop per asset                  [ TERAHOP EAM API ]                           │  JSON response                  [ data processor ]                           │  คำนวณ Total, Downtime%, Idle%                  [ Excel exporter ]                           │              [ output/downtime_YYYYMMDD.xlsx ]
+4. API Specification
+4.1 สิ่งที่ต้องหาจาก DevTools ก่อน Implement
+Programmer ต้องทำขั้นตอนนี้ก่อน เพื่อยืนยัน API contract:
+เปิดหน้าเว็บ Device Utilization Report
+กด F12 → tab Network
+ใส่ Asset Code ใดก็ได้ + กำหนด date → กด Query
+ดู request ที่ยิงออก → copy URL, Method, Headers, Request Body, Response JSON
+นำข้อมูลที่ได้มา implement ใน api_caller.py
+4.2 โครงสร้าง API ที่คาดว่าจะพบ
+Method : POST (หรือ GET — ยืนยันจาก DevTools)URL    : http://10.190.0.184:8080/api/.../utilization/dailyHeaders: {  'Authorization': 'Bearer <token>',  'Content-Type' : 'application/json'}Body   : {  'assetCode' : 'EQPTZ2501067',  'startDate' : '2026-05-12',  'endDate'   : '2026-05-19',  'station'   : 'AA'}
+4.3 Response Field Mapping
+Field (API Response)
+Description
+Type
+Example
+assetCode
+Asset / Equipment ID
+String
+EQPTZ2501067
+runTime
+Total run time in hours
+Float
+158.806
+downtimeDuration
+Total downtime in hours
+Float
+16.996
+timeUtilization
+Utilization rate (decimal)
+Float
+0.87944
+date
+Record date
+String
+2026-05-27
+station
+Station identifier
+String
+AA
+4.4 Authentication
+ระบบใช้ Session Cookie หรือ Bearer Token (ยืนยันจาก DevTools → tab Headers)
+Token อาจหมดอายุ — ต้อง handle re-login หรือให้ user วาง token ใน config
+แนะนำ: เก็บ token ใน config.json หรือ environment variable
+5. โครงสร้างไฟล์ (File Structure)
+downtime-tool/├── main.py              # Entry point — รัน script นี้├── api_caller.py        # ดึงข้อมูลจาก API├── calculator.py        # คำนวณ Total, Downtime%, Idle%├── exporter.py          # Export Excel├── config.json          # token, base_url, station├── asset_list.txt       # รายชื่อ Asset Code ทีละบรรทัด└── output/    └── downtime_20260527.xlsx
+5.1 config.json
+{  "base_url" : "http://10.190.0.184:8080",  "token"    : "<paste token here>",  "station"  : "AA",  "start_date": "2026-05-12",  "end_date"  : "2026-05-19"}
+5.2 asset_list.txt
+EQPTZ2500004EFAZZ0001733EQPTZ2501064EQPTZ2501067EZDYH2400085# เพิ่ม asset code ได้ที่นี่ทีละบรรทัด
+6. Logic การทำงานหลัก (main.py)
+1. โหลด config.json และ asset_list.txt2. For each asset_code in asset_list:      a. เรียก api_caller.get_daily_data(asset_code, start, end)      b. ได้ list ของ {date, runTime, downtime, utilization}      c. เรียก calculator.compute(records)         └→ total_i = runTime / utilization         └→ downtime_pct = downtime / total_i × 100         └→ idle_h = total_i − runTime − downtime         └→ idle_pct = idle_h / total_i × 1003. รวมทุก asset → overall summary row4. เรียก exporter.to_excel(all_records, filename)5. Print ‘Done: output/downtime_YYYYMMDD.xlsx’
+7. Output Excel Format
+7.1 Sheet: Daily Detail
+#
+Asset Code
+Date
+Run Time (h)
+Downtime (h)
+Downtime %
+1
+EQPTZ2501067
+2026-05-20
+20.50
+3.40
+15.11%
+2
+EQPTZ2501067
+2026-05-21
+19.80
+2.70
+12.00%
+3
+EQPTZ2500004
+2026-05-20
+22.10
+0.40
+1.78%
+...
+...
+...
+...
+...
+...
+7.2 Sheet: Weekly Summary
+1 row ต่อ Asset Code
+คอลัมน์: Asset Code, Avg Utilization%, Total Downtime (h), Avg Downtime%, Max Downtime% (worst day), KPI Status
+7.3 Formatting Rules
+Downtime% > 3.5% → highlight แดง (conditional format)
+Idle% > 10.3% → highlight เหลือง
+Header row → สีน้ำเงิน, ตัวอักษรขาว, bold
+Freeze top row และคอลัมน์แรก
+8. Technology Stack
+Component
+Technology
+Purpose
+HTTP Client
+Python requests
+ยิง API call ไปที่ระบบ TERAHOP
+Data Processing
+pandas
+จัดการ / คำนวณ / transform ข้อมูล
+Export
+openpyxl
+สร้างไฟล์ Excel พร้อม format
+Config
+JSON / .env
+เก็บ token, asset list, date range
+Runtime
+Python 3.8+
+ไม่ต้องติดตั้ง environment พิเศษ
+8.1 Installation
+pip install requests pandas openpyxl
+9. Error Handling
+HTTP 401 / 403 → print ‘Token expired — update config.json’ แล้วหยุด
+HTTP 500 → retry 3 ครั้ง, ถ้ายังผิด → skip asset + log
+Utilization = 0 → skip การคำนวณ Total (หาร 0) + เขียน N/A ใน Excel
+Network timeout → retry ด้วย exponential backoff (1s, 2s, 4s)
+ทุก error บันทึกลง error_log.txt พร้อม timestamp
+10. Deliverables ที่ต้องส่งมอบ
+Source code ครบทุกไฟล์ตาม File Structure
+README.md — วิธีติดตั้งและรัน
+ตัวอย่าง output Excel 1 ไฟล์
+วิธีหา API token จาก DevTools (บันทึกเป็น PDF หรือ .md)
+11. Future Enhancement (Phase 2)
+Schedule รันอัตโนมัติทุกเช้าผ่าน Windows Task Scheduler หรือ cron
+Dashboard HTML สรุปภาพรวม KPI รายสัปดาห์
+Line Notify / Email alert เมื่อ Downtime เกิน KPI
+รองรับหลาย Station (ไม่ใช่แค่ AA)
+TERAHOP Thailand — Equipment Utilization Monitoring Project — Confidential

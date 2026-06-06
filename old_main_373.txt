@@ -1,0 +1,111 @@
+Created At: 2026-06-05T10:13:32Z
+Completed At: 2026-06-05T10:13:32Z
+File Path: `file:///d:/Work/Project%20EPMS%20CLONE/pareto-dashboard/update_login.py`
+Total Lines: 149
+Total Bytes: 5271
+Showing lines 1 to 149
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: with open('electron/main.cjs', 'r', encoding='utf-8') as f:
+2:     text = f.read()
+3: 
+4: start_str = "ipcMain.handle('perform-auto-login'"
+5: start_idx = text.find(start_str)
+6: 
+7: if start_idx == -1:
+8:     print('Could not find perform-auto-login')
+9:     exit(1)
+10: 
+11: new_handler = """ipcMain.handle('perform-auto-login', async (event, username, password) => {
+12:   return new Promise((resolve, reject) => {
+13:     try {
+14:       let isResolved = false;
+15:       let hasNavigatedToReport = false;
+16:       const safeResolve = (data) => {
+17:         if (!isResolved) {
+18:           isResolved = true;
+19:           resolve(data);
+20:         }
+21:       };
+22: 
+23:       const loginWindow = new BrowserWindow({
+24:         width: 800,
+25:         height: 600,
+26:         show: true, // Visible for debugging
+27:         webPreferences: {
+28:           nodeIntegration: false,
+29:           contextIsolation: true
+30:         }
+31:       });
+32: 
+33:       loginWindow.on('closed', () => {
+34:         safeResolve({ error: true, message: 'Login process was interrupted.' });
+35:       });
+36: 
+37:       loginWindow.loadURL('http://10.190.0.184:8080/login');
+38: 
+39:       // Attempt to fill credentials once the page loads
+40:       loginWindow.webContents.on('did-finish-load', async () => {
+41:         if (isResolved) return;
+42:         
+43:         const currentUrl = loginWindow.webContents.getURL();
+44:         
+45:         // If we are on the login page, fill credentials
+46:         if (currentUrl.includes('/login')) {
+47:           try {
+48:             const fi
+<truncated 2348 bytes>
+         }
+97:       });
+98: 
+99:       // Poll for the token from the main process
+100:       let attempts = 0;
+101:       const maxAttempts = 60; // 30 seconds
+102:       const pollInterval = setInterval(async () => {
+103:         if (isResolved) {
+104:           clearInterval(pollInterval);
+105:           return;
+106:         }
+107:         
+108:         attempts++;
+109:         if (attempts >= maxAttempts) {
+110:           clearInterval(pollInterval);
+111:           if (!loginWindow.isDestroyed()) loginWindow.close();
+112:           safeResolve({ error: true, message: 'Timeout waiting for login.' });
+113:           return;
+114:         }
+115: 
+116:         if (loginWindow.isDestroyed()) {
+117:           clearInterval(pollInterval);
+118:           return;
+119:         }
+120: 
+121:         try {
+122:           // Check localStorage safely
+123:           const token = await loginWindow.webContents.executeJavaScript("localStorage.getItem('auth._token.local')").catch(() => null);
+124:           if (token && token.startsWith('Bearer')) {
+125:             // We only resolve if we have successfully navigated to the report page OR if the token is valid right away
+126:             if (hasNavigatedToReport || !loginWindow.webContents.getURL().includes('/login')) {
+127:               clearInterval(pollInterval);
+128:               safeResolve({ error: false, token: token });
+129:               if (!loginWindow.isDestroyed()) loginWindow.close();
+130:             }
+131:           }
+132:         } catch (e) {
+133:           // Page might be navigating, ignore
+134:         }
+135:       }, 500);
+136: 
+137:     } catch (err) {
+138:       resolve({ error: true, message: err.message });
+139:     }
+140:   });
+141: });
+142: """
+143: 
+144: new_text = text[:start_idx] + new_handler
+145: with open('electron/main.cjs', 'w', encoding='utf-8') as f:
+146:     f.write(new_text)
+147: 
+148: print('Updated main.cjs with report navigation successfully!')
+149: 
+The above content shows the entire, complete file contents of the requested file.

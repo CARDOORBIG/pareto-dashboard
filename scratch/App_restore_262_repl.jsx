@@ -1,0 +1,1 @@
+"    const totalFaultsCount = Object.values(categoryCounts).reduce((sum, v) => sum + v, 0);\n    console.log('[OutputFault Debug]', { totalFaultsCount, categoryCounts, targetAssetsCount: targetAssets.length, sampleAssets: targetAssets.slice(0, 5), pickerStart, pickerEnd });\n"

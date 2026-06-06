@@ -1,0 +1,38 @@
+.status-box.WAIT_REPAIR[data-v-1159abdc] {
+---
+.status-box.WAIT_REPAIR[data-v-1159abdc] {
+---
+="__SVG_SPRITE_NODE__"><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="icon-call-repair"><g id="icon-call-repair_叫修" transform="translate(-7441 17156)"><rect id="icon-call-repair_矩形_2407"
+---
+32" height="32" rx="4" transform="translate(7441 -17156)" fill="#ff9041"></rect><path id="icon-call-repair_叫修管理" d="M86.985,90.133H85.134a.654.654,0,1,1,0-1.307h1.852a.655.655,0,0,1,.654.654A.649.649,0,0,1,
+---
+th></g></g></g></symbol><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="icon-eqp-repair"><g id="icon-eqp-repair_设备维修" transform="translate(-7637 17156)"><rect id="icon-eqp-repair_矩形_2409"
+---
+th="32" height="32" rx="4" transform="translate(7637 -17156)" fill="#006896"></rect><g id="icon-eqp-repair_设备维修-2" data-name="设备维修" transform="translate(7645.277 -17147.631)"><g id="icon-eqp-repair_组_11782"
+---
+ data-name="组 11782" transform="translate(0.13 0)"><path id="icon-eqp-repair_路径_16556" data-name="路径 16556" d="M-1763.26-2584.176l-3.608-3.608-2.308,2.5,3.51,3.51a1.7,1.7,0,0,0
+---
+0-1763.26-2584.176Z" transform="translate(1777.716 2596.373)" fill="#fff"></path><path id="icon-eqp-repair_路径_16557" data-name="路径 16557" d="M-1851.59-2671.4l.049-1.74-1.673-1.674a1.26,1.26,0,0,0-.354-.24l-
+---
+.491.491,0,0,0,0-.7Z" transform="translate(1856.04 2675.15)" fill="#fff"></path></g><g id="icon-eqp-repair_组_11783" data-name="组 11783" transform="translate(0 0.023)"><path id="icon-eqp-repair_路径_16558" dat
+---
+1855.17-2661.352Z" transform="translate(1857.365 2674.917)" fill="#fff"></path><circle id="icon-eqp-repair_椭圆_562" data-name="椭圆 562" cx="0.265" cy="0.265" r="0.265" transform="translate(1.929 12.581)" fill
+---
+f"></path></g></symbol><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" id="icon-WAIT_REPAIR"><g id="icon-WAIT_REPAIR_维修中01" transform="translate(-30 -383)"><g id="icon-WAIT_REPAIR_组_2130" dat
+---
+a-name="组 2130"><path id="icon-WAIT_REPAIR_椭圆_402" data-name="椭圆 402" d="M14,1A13,13,0,0,0,4.808,23.192,13,13,0,0,0,23.192,4.808,12.915,12.915
+---
+,0,1,1,0,14,14,14,0,0,1,14,0Z" transform="translate(30 383)" fill="#666"></path><path id="icon-WAIT_REPAIR_路径_8369" data-name="路径 8369" d="M71.5,28.88l-.835.846-.608-.543-.739-.718,1.325-1.42a3.807,3.807,0,
+---
+/path></g></g></symbol><symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" id="icon-WAIT_REPAIR_active"><g id="icon-WAIT_REPAIR_active_维修中02" transform="translate(-30 -81)"><circle id="icon-WAIT_
+---
+REPAIR_active_椭圆_400" data-name="椭圆 400" cx="14" cy="14" r="14" transform="translate(30 81)" fill="#38b3d3
+---
+"></circle><path id="icon-WAIT_REPAIR_active_路径_16441" data-name="路径 16441" d="M71.5,28.88l-.835.846-.608-.543-.739-.718,1.325-1.42a3.807
+---
+www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200" id="icon-epms-repair-overview"><g><path d="M158.2,23.1H41.8c-9.5,0-17.3,9.2-17.3,20.4V157c0,11.3,7.8,20.4,17.3,20.4h116.
+---
+www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200" id="icon-epms-repair-record"><g><g><path d="M119.2,173.3H41.4c-9.2,0-16.6-8.8-16.6-19.6V46.3c0-10.8,7.5-19.6,16.6-19.6h1
+---
+www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200" id="icon-epms-repair"><g><path d="M166.3,84.8l0.1-0.1c7.1-7.7,10.8-17.9,10.1-28c-0.2-3-2.3-5.5-5.2-6.1c-3-0.7-5.9,0.7-7.
+---

@@ -1,0 +1,8 @@
+{
+  "base_url": "http://10.190.0.184:8080",
+  "token": "YOUR_BEARER_TOKEN_HERE",
+  "station": "AA",
+  "start_date": "2026-05-22",
+  "end_date": "2026-05-28",
+  "technologyId": "222234064455901199"
+}

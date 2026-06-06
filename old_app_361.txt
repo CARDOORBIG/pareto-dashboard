@@ -1,0 +1,88 @@
+Created At: 2026-06-05T10:13:09Z
+Completed At: 2026-06-05T10:13:10Z
+File Path: `file:///d:/Work/Project%20EPMS%20CLONE/pareto-dashboard/restore_login.py`
+Total Lines: 177
+Total Bytes: 6659
+Showing lines 1 to 177
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: with open('src/App.jsx', 'r', encoding='utf-8') as f:
+2:     text = f.read()
+3: 
+4: # 1. Add LoginModal back, but without the token tab
+5: login_modal_code = """
+6: // ─── Login Component ───
+7: const LoginModal = ({ setToken, setIsAuthenticated }) => {
+8:   const [empId, setEmpId] = useState(localStorage.getItem('pareto_emp_id') || '');
+9:   const [password, setPassword] = useState(localStorage.getItem('pareto_password') || '123456');
+10:   const [loginLoading, setLoginLoading] = useState(false);
+11:   const [loginError, setLoginError] = useState('');
+12: 
+13:   const handleLoginSubmit = async (e) => {
+14:     e.preventDefault();
+15:     setLoginError('');
+16: 
+17:     if (!empId) {
+18:       setLoginError('Please enter your Employee ID');
+19:       return;
+20:     }
+21:     
+22:     try {
+23:       const isElectron = !!window.electronAPI;
+24:       
+25:       if (isElectron) {
+26:         setLoginLoading(true);
+27:         const result = await window.electronAPI.performAutoLogin(empId, password);
+28:         
+29:         if (result.error) {
+30:           setLoginError(result.message || 'Auto-login failed.');
+31:         } else {
+32:           const bearer = result.token.startsWith('Bearer') ? result.token : `Bearer ${result.token}`;
+33:           setToken(bearer);
+34:           localStorage.setItem('pareto_bearer_token', bearer);
+35:           localStorage.setItem('pareto_emp_id', empId);
+36:           localStorage.setItem('pareto_password', password);
+37:           setIsAuthenticated(true);
+38:         }
+39:       } else {
+40:         setLoginError('
+<truncated 3877 bytes>
+39:   const [token, setToken] = useState(() => localStorage.getItem('pareto_bearer_token') || '');"""
+140: 
+141: text = text.replace(target_app_start, replacement_app_start)
+142: 
+143: # 3. Restore the LoginModal rendering in the JSX
+144: target_render = """      <div className="app-container">
+145:         {isAuthenticating && (
+146:           <div className="login-overlay" style={{ flexDirection: 'column', gap: '20px' }}>
+147:             <Loader2 className="animate-spin" size={48} color="#3b82f6" />
+148:             <h2 style={{ color: 'white', fontWeight: 600 }}>Authenticating...</h2>
+149:             <p style={{ color: '#94a3b8' }}>Please wait while we connect to EPMS</p>
+150:           </div>
+151:         )}
+152:         {!isAuthenticating && authError && (
+153:           <div className="login-overlay" style={{ flexDirection: 'column', gap: '20px' }}>
+154:             <div style={{ background: 'rgba(239, 68, 68, 0.2)', padding: '30px', borderRadius: '12px', border: '1px solid rgba(239, 68, 68, 0.4)', textAlign: 'center' }}>
+155:               <h2 style={{ color: '#fca5a5', marginBottom: '10px' }}>Authentication Failed</h2>
+156:               <p style={{ color: 'white' }}>{authError}</p>
+157:               <button 
+158:                 onClick={() => window.location.reload()} 
+159:                 className="generate-btn" 
+160:                 style={{ marginTop: '20px', margin: '20px auto 0' }}
+161:               >
+162:                 Retry
+163:               </button>
+164:             </div>
+165:           </div>
+166:         )}"""
+167: 
+168: replacement_render = """      <div className="app-container">
+169:         {!isAuthenticated && <LoginModal setToken={setToken} setIsAuthenticated={setIsAuthenticated} />}"""
+170: 
+171: text = text.replace(target_render, replacement_render)
+172: 
+173: with open('src/App.jsx', 'w', encoding='utf-8') as f:
+174:     f.write(text)
+175: 
+176: print('Restored LoginModal successfully!')
+177: 
+The above content shows the entire, complete file contents of the requested file.
