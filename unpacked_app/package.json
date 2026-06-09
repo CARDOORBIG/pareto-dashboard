@@ -1,0 +1,19 @@
+{
+  "name": "pareto-dashboard",
+  "description": "DownTime Management application for EPMS",
+  "author": "EPMS Team",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "dependencies": {
+    "flatpickr": "^4.6.13",
+    "html2canvas": "^1.4.1",
+    "lucide-react": "^1.16.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-flatpickr": "^4.0.11",
+    "recharts": "^3.8.1",
+    "xlsx": "^0.18.5"
+  }
+}

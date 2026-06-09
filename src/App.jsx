@@ -14,7 +14,8 @@ import {
   Cell,
   PieChart,
   Pie,
-  BarChart
+  BarChart,
+  Brush
 } from 'recharts';
 import * as XLSX from 'xlsx';
 import WebTracker from './utils/tracker.js';
@@ -520,6 +521,15 @@ class ErrorBoundary extends React.Component {
 }
 
 // ─── Main Application ───
+const getAcceptanceColor = (duration, std) => {
+  const dur = parseFloat(duration) || 0;
+  const standard = parseFloat(std) || 1;
+  const ratio = dur / standard;
+  if (ratio > 1.0) return 'rgba(239, 68, 68, 0.4)';
+  if (ratio > 0.8) return 'rgba(234, 179, 8, 0.4)';
+  return 'rgba(34, 197, 94, 0.4)';
+};
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     const params = new URLSearchParams(window.location.search);
@@ -558,6 +568,7 @@ function App() {
   };
 
   const [startDate, setStartDate] = useState('2026-05-22');
+
   const [endDate, setEndDate] = useState('2026-05-28');
   const [isPickerOpen, setIsPickerOpen] = useState(false);
   const [tempStart, setTempStart] = useState(null);
@@ -565,12 +576,13 @@ function App() {
   const [currentMonth, setCurrentMonth] = useState(() => endDate ? parseDateStr(endDate) : new Date());
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [chartStyle, setChartStyle] = useState({
-    trend: 'monotone',
-    output: 'monotone',
-    pareto: 'monotone',
-    pm: 'monotone'
+    trend: 'linear',
+    output: 'linear',
+    pareto: 'linear',
+    pm: 'linear'
   });
   const [isLightTheme, setIsLightTheme] = useState(false);
+  const [faultView, setFaultView] = useState('category');
   const pickerRef = useRef(null);
 
   const toggleChartStyle = (chartKey) => {
@@ -634,12 +646,115 @@ function App() {
   const [idleTimeData, setIdleTimeData] = useState([]);
   const [maintenancePieData, setMaintenancePieData] = useState([]);
   const [outputFaultPieData, setOutputFaultPieData] = useState([]);
+  const [hiddenSeries, setHiddenSeries] = useState({});
+  const handleToggleSeries = useCallback((e) => {
+    if (e && e.dataKey) {
+      setHiddenSeries(prev => ({ ...prev, [e.dataKey]: !prev[e.dataKey] }));
+    }
+  }, []);
   const [outputFaultParetoData, setOutputFaultParetoData] = useState([]);
   const [faultCodesDrillDown, setFaultCodesDrillDown] = useState({});
+  const [filteredIncidents, setFilteredIncidents] = useState([]);
+  const [isFaultModalVisible, setIsFaultModalVisible] = useState(false);
+  const [selectedFaultRecords, setSelectedFaultRecords] = useState([]);
+  const [isSummaryPopupOpen, setIsSummaryPopupOpen] = useState(false);
+  const [isOperatorsPopupOpen, setIsOperatorsPopupOpen] = useState(false);
+  const [opsPopupSearch, setOpsPopupSearch] = useState('');
+  const [opsPopupSortKey, setOpsPopupSortKey] = useState('count');
+  const [opsPopupSortDir, setOpsPopupSortDir] = useState('desc');
+  const [modalSearchQuery, setModalSearchQuery] = useState('');
+  const [modalSortConfig, setModalSortConfig] = useState({ key: 'duration', direction: 'desc' });
+  const modalTableRef = useRef(null);
+  const [isModalDragging, setIsModalDragging] = useState(false);
+  const [modalDragStart, setModalDragStart] = useState({ x: 0, y: 0, scrollLeft: 0, scrollTop: 0 });
+
+  const handleModalMouseDown = useCallback((e) => {
+    if (e.button === 2) { // Right click
+      e.preventDefault();
+      setIsModalDragging(true);
+      if (modalTableRef.current) {
+        setModalDragStart({
+          x: e.clientX,
+          y: e.clientY,
+          scrollLeft: modalTableRef.current.scrollLeft,
+          scrollTop: modalTableRef.current.scrollTop
+        });
+      }
+    }
+  }, []);
+
+  const handleModalMouseMove = useCallback((e) => {
+    if (!isModalDragging || !modalTableRef.current) return;
+    e.preventDefault();
+    const dx = e.clientX - modalDragStart.x;
+    const dy = e.clientY - modalDragStart.y;
+    modalTableRef.current.scrollLeft = modalDragStart.scrollLeft - dx;
+    modalTableRef.current.scrollTop = modalDragStart.scrollTop - dy;
+  }, [isModalDragging, modalDragStart]);
+
+  const handleModalMouseUpOrLeave = useCallback((e) => {
+    if (isModalDragging) {
+      setIsModalDragging(false);
+    }
+  }, [isModalDragging]);
+
+  const requestModalSort = useCallback((key) => {
+    setModalSortConfig(prev => {
+      if (prev.key === key) {
+        return { key, direction: prev.direction === 'asc' ? 'desc' : 'asc' };
+      }
+      return { key, direction: 'desc' };
+    });
+  }, []);
+
+  const renderModalSortableHeader = useCallback((label, key) => (
+    <th style={{ cursor: 'pointer', userSelect: 'none' }} onClick={() => requestModalSort(key)}>
+      {label}
+      {modalSortConfig.key === key && (modalSortConfig.direction === 'asc' ? ' ▲' : ' ▼')}
+    </th>
+  ), [modalSortConfig, requestModalSort]);
+
+  const [selectedFaultTitle, setSelectedFaultTitle] = useState('');
   const [selectedAsset, setSelectedAsset] = useState('ALL');
   const [activeAssetList, setActiveAssetList] = useState(['ALL']);
 
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+
+  const sortedModalRecords = useMemo(() => {
+    return selectedFaultRecords
+      .filter(inc => {
+        if (!modalSearchQuery) return true;
+        const query = modalSearchQuery.toLowerCase();
+        return (
+          (inc.workOrderCode || inc.workOrder || '').toLowerCase().includes(query) ||
+          (inc.assetCode || '').toLowerCase().includes(query) ||
+          (inc.operator || '').toLowerCase().includes(query) ||
+          (inc.repairPersonnel || '').toLowerCase().includes(query) ||
+          (inc.mappedCode || '').toLowerCase().includes(query) ||
+          (inc.mappedCategory || '').toLowerCase().includes(query)
+        );
+      })
+      .sort((a, b) => {
+        if (!modalSortConfig.key) return 0;
+        let valA = a[modalSortConfig.key];
+        let valB = b[modalSortConfig.key];
+
+        if (modalSortConfig.key === 'workOrderCode') {
+          valA = a.workOrderCode || a.workOrder;
+          valB = b.workOrderCode || b.workOrder;
+        } else if (modalSortConfig.key === 'duration' || modalSortConfig.key === 'standardRepairTime') {
+          valA = parseFloat(valA) || 0;
+          valB = parseFloat(valB) || 0;
+        } else {
+          if (valA === undefined) valA = '';
+          if (valB === undefined) valB = '';
+        }
+
+        if (valA < valB) return modalSortConfig.direction === 'asc' ? -1 : 1;
+        if (valA > valB) return modalSortConfig.direction === 'asc' ? 1 : -1;
+        return 0;
+      });
+  }, [selectedFaultRecords, modalSearchQuery, modalSortConfig]);
 
   const [activeCondition, setActiveCondition] = useState('RUN');
   const [activeCategorySelector, setActiveCategorySelector] = useState('maintenance'); // it
@@ -934,12 +1049,12 @@ function App() {
           if (url.includes('equipmentStatusAnalysis')) {
             // Generate mock days
             const mockList = [];
-            for (let d=1; d<=7; d++) mockList.push({ key: `2026-05-${d.toString().padStart(2, '0')}`, value: Math.random() });
+            for (let d = 1; d <= 7; d++) mockList.push({ key: `2026-05-${d.toString().padStart(2, '0')}`, value: Math.random() });
             return { data: { eqpStatusAnalysisList: mockList } };
           }
           if (url.includes('outputAnalysis')) {
             const mockOutput = [];
-            for (let d=1; d<=7; d++) mockOutput.push({ workDate: `2026-05-${d.toString().padStart(2, '0')}`, normalOutputActual: 500+Math.random()*100, reworkOutputActual: 20+Math.random()*10 });
+            for (let d = 1; d <= 7; d++) mockOutput.push({ workDate: `2026-05-${d.toString().padStart(2, '0')}`, normalOutputActual: 500 + Math.random() * 100, reworkOutputActual: 20 + Math.random() * 10 });
             return { data: { outputAnalysisList: mockOutput } };
           }
           errorsList.push(e);
@@ -1274,7 +1389,7 @@ function App() {
       const fcData = faultCategories[asset];
       if (fcData) {
         Object.keys(fcData).forEach(date => {
-          // Bypass strict date check for demo data so charts are never empty
+          if (startDate && endDate && (date < startDate || date > endDate)) return;
           const dayData = fcData[date];
           Object.keys(dayData).forEach(rawCategory => {
             const enCategory = categoryNameToEn[rawCategory] || "OTHER";
@@ -1294,7 +1409,7 @@ function App() {
       const oldData = faultCauses[asset];
       if (oldData) {
         Object.keys(oldData).forEach(date => {
-          // Bypass strict date check for demo data
+          if (startDate && endDate && (date < startDate || date > endDate)) return;
           const dayData = oldData[date];
           Object.keys(dayData).forEach(category => {
             const catData = dayData[category];
@@ -1315,7 +1430,12 @@ function App() {
       }
 
       // 3. Directly filter from real_incidents.json list for this asset
-      const filteredLive = realIncidents.filter(inc => inc.assetCode === asset);
+      const filteredLive = realIncidents.filter(inc => {
+        if (inc.assetCode !== asset) return false;
+        if (!startDate || !endDate || !inc.date) return true;
+        const d = inc.date.split(' ')[0];
+        return d >= startDate && d <= endDate;
+      });
       filteredLive.forEach(inc => {
         // Bypass strict date check for demo data
         const code = inc.code || "";
@@ -1336,6 +1456,30 @@ function App() {
         categoryCodes[category][code] = (categoryCodes[category][code] || 0) + 1;
       });
     });
+
+    let allMatchedIncidents = [];
+    realIncidents.forEach(inc => {
+      let isWithinDateRange = true;
+      if (startDate && endDate && inc.date) {
+        const d = inc.date.split(' ')[0];
+        isWithinDateRange = (d >= startDate && d <= endDate);
+      }
+      if (targetAssets.includes(inc.assetCode) && isWithinDateRange) {
+        const code = inc.code || "";
+        let category = "OTHER";
+        if (code.startsWith("HWDZ") || code.startsWith("HWYJ") || code.startsWith("MMYJ") || code.startsWith("RXYJ") || code.startsWith("TXYJ")) {
+          category = "The device itself";
+        } else if (code.startsWith("RXRY") || code.startsWith("TXRY")) {
+          category = "Human causes";
+        } else if (code.startsWith("RXJY") || code.startsWith("TXJY")) {
+          category = "Abnormal incoming materials";
+        } else if (code.startsWith("RXRJ") || code.startsWith("TXRJ") || code.startsWith("RXQJ") || code.startsWith("TXQJ")) {
+          category = "OTHER";
+        }
+        allMatchedIncidents.push({ ...inc, mappedCategory: category, mappedCode: code });
+      }
+    });
+    setFilteredIncidents(allMatchedIncidents);
 
     const totalFaultsCount = Object.values(categoryCounts).reduce((sum, v) => sum + v, 0);
 
@@ -1365,6 +1509,7 @@ function App() {
 
     // Setup drill-down codes data
     const drillDownData = {};
+    const COLORS = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc'];
     Object.keys(categoryCodes).forEach(category => {
       const codeEntries = Object.keys(categoryCodes[category]).map(code => {
         const val = categoryCodes[category][code];
@@ -1379,10 +1524,11 @@ function App() {
 
       let drillCum = 0;
       const drillTotal = codeEntries.reduce((s, e) => s + e.value, 0);
-      drillDownData[category] = codeEntries.map(entry => {
+      drillDownData[category] = codeEntries.map((entry, index) => {
         drillCum += entry.value;
         return {
           ...entry,
+          color: COLORS[index % COLORS.length],
           cumulativePercentage: drillTotal > 0 ? parseFloat((drillCum / drillTotal * 100).toFixed(2)) : 0
         };
       });
@@ -1533,6 +1679,62 @@ function App() {
     XLSX.writeFile(book, fileName);
   }, [activeCategorySelector, maintenancePieData, outputFaultParetoData, faultCodesDrillDown, selectedDrillDownCategory]);
 
+  const exportFaultDetailsToExcel = useCallback(() => {
+    if (!sortedModalRecords || sortedModalRecords.length === 0) return;
+
+    const excelData = sortedModalRecords.map(inc => {
+      let desc = "Unknown fault code description";
+      if (typeof faultDescriptions !== 'undefined' && faultDescriptions[inc.mappedCode]) {
+        desc = faultDescriptions[inc.mappedCode];
+      } else if (typeof DEVICE_FAULT_DETAILS !== 'undefined' && DEVICE_FAULT_DETAILS[inc.mappedCode]) {
+        desc = DEVICE_FAULT_DETAILS[inc.mappedCode].name;
+      }
+
+      const meta = assetsMetadata[inc.assetCode] || {};
+
+      return {
+        'Work Order Code': inc.workOrderCode || inc.workOrder || '',
+        'Standard Repair Time (min)': inc.standardRepairTime || '',
+        'Repair Duration (min)': inc.duration || '',
+        'Request Time': inc.date || '',
+        'Requester': inc.operator || '',
+        'Equipment Short Name': meta.abbreviation || inc.assetCode || '',
+        'Equipment Type': meta.type || '',
+        'Position': '',
+        'Model': meta.model || '',
+        'Fault Type': inc.mappedCategory || '',
+        'Fault Category': inc.mappedCategory || '',
+        'Fault Code': inc.mappedCode || '',
+        'Fault Description': desc || '',
+        'Analysis and Troubleshooting': '',
+        'Repair Time': '',
+        'Restart Time': '',
+        'Repair Personnel': inc.repairPersonnel || '',
+        'Acceptance Personnel': '',
+        'Order Response Duration (min)': '',
+        'Acceptance Duration (min)': '',
+        'Asset Code': inc.assetCode || '',
+        'Work Order Duration (min)': inc.duration || '',
+        'Work Order Status': 'Closed order',
+        'SAP Code': meta.sapCode || '',
+        'Equipment Name': meta.name || '',
+        'Equipment Model': meta.model || '',
+        'Order Receiver': inc.repairPersonnel || '',
+        'Supplementary Entry Status': 'Supplemented',
+        'Repair Type': 'Internal repair'
+      };
+    });
+
+    const worksheet = XLSX.utils.json_to_sheet(excelData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Repair Records");
+
+    const wscols = Object.keys(excelData[0]).map(k => ({ wch: Math.max(k.length, 15) }));
+    worksheet['!cols'] = wscols;
+
+    XLSX.writeFile(workbook, `Repair_Records_DrillDown.xlsx`);
+  }, [sortedModalRecords]);
+
   const requestSort = useCallback((key) => {
     setSortConfig(prev => {
       if (prev.key === key) {
@@ -1614,194 +1816,334 @@ function App() {
 
         <main className="main-content">
           <aside className={`left-sidebar ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
-              <div className="sidebar-inner">
-                <div className="controls-group">
-                  <div className="input-group">
-                    <label>Station</label>
-                    <div className="select-wrapper">
-                      <select value={stationId} onChange={e => setStationId(e.target.value)}>
-                        {STATION_OPTIONS.map(opt => (
-                          <option key={opt} value={opt}>{opt}</option>
-                        ))}
-                      </select>
-                      <ChevronDown className="select-icon" size={16} />
-                    </div>
+            <div className="sidebar-inner">
+              <div className="controls-group">
+                <div className="input-group">
+                  <label>Station</label>
+                  <div className="select-wrapper">
+                    <select value={stationId} onChange={e => setStationId(e.target.value)}>
+                      {STATION_OPTIONS.map(opt => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="select-icon" size={16} />
                   </div>
-                  <div className="input-group">
-                    <label>Asset Codes</label>
-                    <textarea
-                      rows={5}
-                      value={assetCodes}
-                      onChange={e => setAssetCodes(e.target.value)}
-                      placeholder="Comma separated, e.g. EQPTZ2501066"
-                    />
-                  </div>
-
-                  <div className="input-group date-picker-group" ref={pickerRef}>
-                    <label>Date Range</label>
-                    <div
-                      className="date-display"
-                      onClick={() => setIsPickerOpen(!isPickerOpen)}
-                    >
-                      <span>{startDate || 'Select start'}</span>
-                      <span className="separator">→</span>
-                      <span>{endDate || 'Select end'}</span>
-                    </div>
-
-                    {isPickerOpen && (
-                      <div className="calendar-dropdown">
-                        <div className="calendar-header">
-                          <button onClick={() => {
-                            const newD = new Date(currentMonth);
-                            newD.setMonth(newD.getMonth() - 1);
-                            setCurrentMonth(newD);
-                          }}>◀</button>
-                          <span>{currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-                          <button onClick={() => {
-                            const newD = new Date(currentMonth);
-                            newD.setMonth(newD.getMonth() + 1);
-                            setCurrentMonth(newD);
-                          }}>▶</button>
-                        </div>
-                        <div className="calendar-grid">
-                          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                            <div key={day} className="day-name">{day}</div>
-                          ))}
-                          {getDaysInMonth(currentMonth).map((d, i) => {
-                            const dateStr = formatDateStr(d.date);
-                            let className = 'day-cell';
-                            if (!d.isCurrentMonth) className += ' other-month';
-
-                            const isStart = dateStr === tempStart || dateStr === startDate;
-                            const isEnd = dateStr === endDate && !tempStart;
-                            const isHovered = tempStart && hoveredDate === dateStr;
-
-                            let inRange = false;
-                            if (!tempStart && startDate && endDate && dateStr > startDate && dateStr < endDate) inRange = true;
-                            if (tempStart && hoveredDate) {
-                              const s = tempStart < hoveredDate ? tempStart : hoveredDate;
-                              const e = tempStart > hoveredDate ? tempStart : hoveredDate;
-                              if (dateStr > s && dateStr < e) inRange = true;
-                            }
-
-                            if (isStart || isEnd) className += ' selected';
-                            if (inRange) className += ' in-range';
-
-                            return (
-                              <div
-                                key={i}
-                                className={className}
-                                onClick={() => handleDayClick(dateStr)}
-                                onMouseEnter={() => handleDayMouseEnter(dateStr)}
-                              >
-                                {d.date.getDate()}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <button
-                    onClick={handleFetch}
-                    disabled={loading}
-                    className="generate-btn"
-                  >
-                    {loading ? <Loader2 className="spin" size={18} /> : <Play size={18} />}
-                    <span>{loading ? 'Analyzing...' : 'Generate Analysis'}</span>
-                  </button>
                 </div>
+                <div className="input-group">
+                  <label>Asset Codes</label>
+                  <textarea
+                    rows={5}
+                    value={assetCodes}
+                    onChange={e => setAssetCodes(e.target.value)}
+                    placeholder="Comma separated, e.g. EQPTZ2501066"
+                  />
+                </div>
+
+                <div className="input-group date-picker-group" ref={pickerRef}>
+                  <label>Date Range</label>
+                  <div
+                    className="date-display"
+                    onClick={() => setIsPickerOpen(!isPickerOpen)}
+                  >
+                    <span>{startDate || 'Select start'}</span>
+                    <span className="separator">→</span>
+                    <span>{endDate || 'Select end'}</span>
+                  </div>
+
+                  {isPickerOpen && (
+                    <div className="calendar-dropdown">
+                      <div className="calendar-header">
+                        <button onClick={() => {
+                          const newD = new Date(currentMonth);
+                          newD.setMonth(newD.getMonth() - 1);
+                          setCurrentMonth(newD);
+                        }}>◀</button>
+                        <span>{currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
+                        <button onClick={() => {
+                          const newD = new Date(currentMonth);
+                          newD.setMonth(newD.getMonth() + 1);
+                          setCurrentMonth(newD);
+                        }}>▶</button>
+                      </div>
+                      <div className="calendar-grid">
+                        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+                          <div key={day} className="day-name">{day}</div>
+                        ))}
+                        {getDaysInMonth(currentMonth).map((d, i) => {
+                          const dateStr = formatDateStr(d.date);
+                          let className = 'day-cell';
+                          if (!d.isCurrentMonth) className += ' other-month';
+
+                          const isStart = dateStr === tempStart || dateStr === startDate;
+                          const isEnd = dateStr === endDate && !tempStart;
+                          const isHovered = tempStart && hoveredDate === dateStr;
+
+                          let inRange = false;
+                          if (!tempStart && startDate && endDate && dateStr > startDate && dateStr < endDate) inRange = true;
+                          if (tempStart && hoveredDate) {
+                            const s = tempStart < hoveredDate ? tempStart : hoveredDate;
+                            const e = tempStart > hoveredDate ? tempStart : hoveredDate;
+                            if (dateStr > s && dateStr < e) inRange = true;
+                          }
+
+                          if (isStart || isEnd) className += ' selected';
+                          if (inRange) className += ' in-range';
+
+                          return (
+                            <div
+                              key={i}
+                              className={className}
+                              onClick={() => handleDayClick(dateStr)}
+                              onMouseEnter={() => handleDayMouseEnter(dateStr)}
+                            >
+                              {d.date.getDate()}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="analyzing-section" style={{ marginTop: '15px', marginBottom: '15px', padding: '10px', background: 'var(--bg-card)', borderRadius: '6px', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ flex: 1, borderRight: '1px solid var(--border-light)', paddingRight: '10px' }}>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Station</span>
+                      <div style={{ fontSize: '1rem', fontWeight: 'bold', color: '#10b981' }}>{stationId}</div>
+                    </div>
+                    <div style={{ flex: 1, paddingLeft: '10px', textAlign: 'right' }}>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Analyzing</span>
+                      <div style={{ fontSize: '1rem', fontWeight: 'bold', color: '#3b82f6' }}>{activeAssetList.includes('ALL') ? 'ALL Assets' : (activeAssetList.length === 1 ? activeAssetList[0] : `${activeAssetList.length} Assets`)}</div>
+                    </div>
+                  </div>
+
+                  {chartData.length > 0 && (
+                    <div className="asset-vertical-list" style={{ marginTop: '15px', display: 'flex', flexDirection: 'column', gap: '4px', flex: 1, overflowY: 'auto', paddingRight: '5px' }}>
+                      <div
+                        onClick={() => handleAssetFilterChange('ALL')}
+                        style={{ padding: '8px 12px', borderRadius: '4px', cursor: 'pointer', fontSize: '0.85rem', fontWeight: activeAssetList.includes('ALL') ? 'bold' : 'normal', background: activeAssetList.includes('ALL') ? 'var(--bg-active-light, rgba(59, 130, 246, 0.2))' : 'transparent', color: activeAssetList.includes('ALL') ? '#3b82f6' : 'var(--text-muted)', border: activeAssetList.includes('ALL') ? '1px solid rgba(59, 130, 246, 0.5)' : '1px solid transparent', transition: 'all 0.2s' }}
+                        onMouseEnter={e => { if (!activeAssetList.includes('ALL')) e.currentTarget.style.background = 'var(--border-light)' }}
+                        onMouseLeave={e => { if (!activeAssetList.includes('ALL')) e.currentTarget.style.background = 'transparent' }}
+                      >
+                        ALL
+                      </div>
+                      {chartData.map(c => (
+                        <div
+                          key={c.asset}
+                          onClick={() => handleAssetFilterChange(c.asset)}
+                          style={{ padding: '8px 12px', borderRadius: '4px', cursor: 'pointer', fontSize: '0.85rem', fontWeight: activeAssetList.includes(c.asset) ? 'bold' : 'normal', background: activeAssetList.includes(c.asset) ? 'var(--bg-active-light, rgba(59, 130, 246, 0.2))' : 'transparent', color: activeAssetList.includes(c.asset) ? '#3b82f6' : 'var(--text-muted)', border: activeAssetList.includes(c.asset) ? '1px solid rgba(59, 130, 246, 0.5)' : '1px solid transparent', transition: 'all 0.2s', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                          onMouseEnter={e => { if (!activeAssetList.includes(c.asset)) e.currentTarget.style.background = 'var(--border-light)' }}
+                          onMouseLeave={e => { if (!activeAssetList.includes(c.asset)) e.currentTarget.style.background = 'transparent' }}
+                        >
+                          <span>{c.abbreviation}</span>
+                          <span style={{ fontSize: '0.7rem', opacity: 0.5 }}>{c.station}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <button
+                  onClick={handleFetch}
+                  disabled={loading}
+                  className="generate-btn"
+                >
+                  {loading ? <Loader2 className="spin" size={18} /> : <Play size={18} />}
+                  <span>{loading ? 'Analyzing...' : 'Generate Analysis'}</span>
+                </button>
               </div>
-            </aside>
+            </div>
+          </aside>
 
           <div className="dashboard-content">
 
-          {error && (
-            <div className="alert-message error-message">
-              <ServerCrash size={20} />
-              <span>{error}</span>
-            </div>
-          )}
-
-          {success && (
-            <div className="alert-message success-message">
-              <CheckCircle2 size={20} />
-              <span>{success}</span>
-            </div>
-          )}
-
-          {loading && (
-            <div className="progress-container">
-              <div className="progress-text">
-                Retrieving equipment data... {progress.current} / {progress.total}
+            {error && (
+              <div className="alert-message error-message">
+                <ServerCrash size={20} />
+                <span>{error}</span>
               </div>
-              <div className="progress-bar-bg">
-                <div
-                  className="progress-bar-fill"
-                  style={{ width: `${progress.total > 0 ? (progress.current / progress.total) * 100 : 0}%` }}
-                ></div>
-              </div>
-            </div>
-          )}
+            )}
 
-          {chartData.length > 0 && (
-            <div className="dashboard-grid">
-              {/* Top row: Summary & Pareto */}
-              <div className="grid-row-top">
-                {utilSummary && (
-                  <div className="panel summary-panel">
-                    <h2>Executive Summary</h2>
-                    <div className="summary-grid">
-                      <div className="summary-card">
-                        <div className="label">Total Equipment</div>
-                        <div className="value">{utilSummary.totalNum}</div>
-                      </div>
-                      <div className="summary-card">
-                        <div className="label">Avg Actual Util.</div>
-                        <div className="value highlight">{utilSummary.avgActualUtil}%</div>
-                      </div>
-                      <div className="summary-card">
-                        <div className="label">Avg Overall Util.</div>
-                        <div className="value highlight-secondary">{utilSummary.avgOverallUtil}%</div>
-                      </div>
-                      <div className="summary-card">
-                        <div className="label">Total Downtime</div>
-                        <div className="value danger">{utilSummary.totalDowntimeHrs} hrs</div>
-                      </div>
-                      <div className="summary-card">
-                        <div className="label">Total Run Time</div>
-                        <div className="value success">{utilSummary.totalRunTimeHrs} hrs</div>
-                      </div>
+            {success && (
+              <div className="alert-message success-message">
+                <CheckCircle2 size={20} />
+                <span>{success}</span>
+              </div>
+            )}
+
+            {loading && (
+              <div className="progress-container">
+                <div className="progress-text">
+                  Retrieving equipment data... {progress.current} / {progress.total}
+                </div>
+                <div className="progress-bar-bg">
+                  <div
+                    className="progress-bar-fill"
+                    style={{ width: `${progress.total > 0 ? (progress.current / progress.total) * 100 : 0}%` }}
+                  ></div>
+                </div>
+              </div>
+            )}
+
+            {chartData.length > 0 && (
+              <div className="dashboard-grid">
+
+
+                <div className="dashboard-2x2-layout" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem', marginBottom: '1.25rem' }}>
+
+                  {/* Top Left: Conditions */}
+                  <div className="panel chart-panel">
+                    <div className="panel-header">
+                      <h2>Actual device condition</h2>
+                      <p className="subtitle">Global Average</p>
+                    </div>
+                    <div className="chart-wrapper condition-bars-container" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', justifyContent: 'center', padding: '10px 0', minHeight: '370px' }}>
+                      {conditionData && (
+                        <>
+                          <ConditionBar label="Running" actual={conditionData.run} kpi={KPI.RUN} isGte={true} isActive={activeCondition === 'RUN'} onClick={() => setActiveCondition('RUN')} />
+                          <ConditionBar label="Idle" actual={conditionData.idle} kpi={KPI.IDLE} isGte={false} isActive={activeCondition === 'IDLE'} onClick={() => setActiveCondition('IDLE')} />
+                          <ConditionBar label="Maintenance" actual={conditionData.down} kpi={KPI.DOWN} isGte={false} isActive={activeCondition === 'DOWN'} onClick={() => setActiveCondition('DOWN')} />
+                          <ConditionBar label="PM" actual={conditionData.pm} kpi={KPI.PM} isGte={false} isActive={activeCondition === 'PM'} onClick={() => setActiveCondition('PM')} />
+                        </>
+                      )}
                     </div>
                   </div>
-                )}
 
-                <div ref={panelRef} className={`panel chart-panel down-panel ${isFullScreen ? 'full-screen' : ''}`}>
-                      <div className="panel-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                        <div>
-                          <h2>Category fault causes proportion</h2>
-                          <p className="subtitle">Proportion of output fault causes</p>
-                        </div>
-                        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                          <button className="export-btn" onClick={exportCategoryExcel} title="Export to Excel">
-                            <Download size={14} style={{ marginRight: '5px' }} /> Excel
-                          </button>
-                          <button className="export-btn" onClick={() => captureElement(panelRef, isFullScreen ? 'Output_Analysis_Panel_Full.png' : 'Output_Analysis_Panel.png')} title="Capture Panel as Image">
-                            <Camera size={14} style={{ marginRight: '5px' }} /> Capture
-                          </button>
-                          <button className="export-btn" onClick={() => setIsFullScreen(!isFullScreen)} title={isFullScreen ? 'Exit Full Screen' : 'Full Screen Mode'}>
-                            {isFullScreen ? <Minimize2 size={14} style={{ marginRight: '5px' }} /> : <Maximize2 size={14} style={{ marginRight: '5px' }} />}
-                            {isFullScreen ? 'Exit Full Screen' : 'Full Screen'}
-                          </button>
-                          <div className="chart-style-toggle-group">
-                            <button className={outputFaultChartType === 'pie' ? 'active' : ''} onClick={() => { setOutputFaultChartType('pie'); setSelectedDrillDownCategory(null); }}>Pie</button>
-                            <button className={outputFaultChartType === 'pareto' ? 'active' : ''} onClick={() => { setOutputFaultChartType('pareto'); setSelectedDrillDownCategory(null); }}>Pareto</button>
-                          </div>
-                        </div>
+                  {/* Top Right: Trend Panel */}
+                  <div className="panel chart-panel trend-panel">
+                    <div className="panel-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <div>
+                        <h2>{activeCondition === 'RUN' ? 'Run Analysis' : `${activeCondition} Trend Analysis (%)`}</h2>
+                        <p className="subtitle">Daily performance against KPI</p>
                       </div>
-                      <div className="chart-wrapper">
-                        {outputFaultChartType === 'pie' ? (
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        <button
+                          className="export-btn"
+                          onClick={() => {
+                            let trendKey, kpiObj, name;
+                            switch (activeCondition) {
+                              case 'RUN': trendKey = 'dailyRun'; kpiObj = KPI.RUN; name = 'RUN'; break;
+                              case 'IDLE': trendKey = 'dailyIdle'; kpiObj = KPI.IDLE; name = 'IDLE'; break;
+                              case 'DOWN': trendKey = 'dailyDown'; kpiObj = KPI.DOWN; name = 'DOWN'; break;
+                              case 'PM': trendKey = 'dailyPm'; kpiObj = KPI.PM; name = 'PM'; break;
+                              default: return;
+                            }
+                            exportDailyTrend(trendKey, kpiObj, name);
+                          }}
+                          title={`Export ${activeCondition} Trend to Excel`}
+                          style={{ padding: '4px 10px', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '6px' }}
+                        >
+                          <Download size={14} /> Excel
+                        </button>
+                        <button className="chart-style-toggle" onClick={() => toggleChartStyle('trend')}>
+                          {chartStyle.trend === 'monotone' ? 'Curved' : 'Straight'}
+                        </button>
+                      </div>
+                    </div>
+                    <div className="chart-wrapper">
+                      <ResponsiveContainer width="100%" height={370}>
+                        <ComposedChart
+                          data={
+                            activeCondition === 'RUN' ? runData :
+                              activeCondition === 'IDLE' ? idleData :
+                                activeCondition === 'DOWN' ? downData : pmData
+                          }
+                          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+                        >
+                          <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" vertical={false} />
+                          <XAxis dataKey="date" stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)' }} tickLine={false} axisLine={{ stroke: 'var(--border-light)' }} />
+                          <YAxis stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)' }} tickLine={false} axisLine={{ stroke: 'var(--border-light)' }} />
+                          <Tooltip content={<RunTooltip />} />
+                          <Legend wrapperStyle={{ paddingTop: '20px' }} />
+                          <Line type={chartStyle.trend} dataKey="value" name={activeCondition === 'RUN' ? 'Running ratio' : 'Actual Ratio'} stroke="#5470c6" strokeWidth={2} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+                          <Line type={chartStyle.trend} dataKey="target" name="Target KPI" stroke="#f59e0b" strokeWidth={2} dot={false} />
+                          <Brush dataKey="date" height={30} stroke="#5470c6" fill="var(--bg-card-hover)" tickFormatter={() => ''} />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </div>
+
+                  {/* Bottom Left: Output Quantity Analysis */}
+                  <div className="panel chart-panel output-panel">
+                    <div className="panel-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <div>
+                        <h2>Output Quantity Analysis</h2>
+                        <p className="subtitle">Daily production output (Normal vs Rework)</p>
+                      </div>
+                      <button className="chart-style-toggle" onClick={() => toggleChartStyle('output')}>
+                        {chartStyle.output === 'monotone' ? 'Curved' : 'Straight'}
+                      </button>
+                    </div>
+                    <div className="chart-wrapper">
+                      <ResponsiveContainer width="100%" height={350}>
+                        <ComposedChart data={outputData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+                          <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" vertical={false} />
+                          <XAxis dataKey="date" stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)' }} tickLine={false} axisLine={{ stroke: 'var(--border-light)' }} />
+                          <YAxis stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)' }} tickLine={false} axisLine={{ stroke: 'var(--border-light)' }} />
+                          <Tooltip contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)', color: 'var(--text-main)' }} />
+                          <Legend verticalAlign="bottom" align="center" onClick={handleLegendClick} wrapperStyle={{ paddingTop: '20px', cursor: 'pointer' }} />
+                          <Bar dataKey="normalOutputActual" stackId="a" name="Normal Work Order Actual Output" fill="#bfd3ed" radius={[0, 0, 0, 0]} hide={!outputSeriesVisibility.normalOutputActual} legendType="rect" barSize={24} />
+                          <Bar dataKey="reworkOutputActual" stackId="a" name="Rework Order Actual Output" fill="#4a90e2" radius={[0, 0, 0, 0]} hide={!outputSeriesVisibility.reworkOutputActual} legendType="rect" barSize={24} />
+                          <Line type={chartStyle.output} dataKey="normalOutputStandard" name="Normal Work Order Standard Output" stroke="#7cc6b7" strokeWidth={3} dot={false} hide={!outputSeriesVisibility.normalOutputStandard} legendType="rect" />
+                          <Line type={chartStyle.output} dataKey="reworkOutputStandard" name="Rework Order Standard Output" stroke="#a8d26a" strokeWidth={3} dot={false} hide={!outputSeriesVisibility.reworkOutputStandard} legendType="rect" />
+                          <Brush dataKey="date" height={30} stroke="#5470c6" fill="var(--bg-dark)" tickFormatter={() => ''} />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </div>
+
+                  {/* Bottom Right: Faults Dropdown Panel */}
+                  <div ref={panelRef} className={`panel chart-panel down-panel ${isFullScreen ? 'full-screen' : ''}`}>
+                    <div className="panel-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <div>
+                        <select
+                          value={faultView}
+                          onChange={(e) => setFaultView(e.target.value)}
+                          className="modern-select"
+                          style={{
+                            background: 'transparent',
+                            color: 'var(--text-main)',
+                            border: '1px solid var(--border-light)',
+                            padding: '4px 8px',
+                            borderRadius: '4px',
+                            fontSize: '18px',
+                            fontWeight: 'bold',
+                            marginBottom: '5px',
+                            outline: 'none',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          <option value="category" style={{ background: 'var(--bg-card-hover)' }}>Category fault causes proportion</option>
+                          <option value="maintenance" style={{ background: 'var(--bg-card-hover)' }}>Maintenance Fault Causes</option>
+                        </select>
+                        <p className="subtitle">
+                          {faultView === 'category' ? "Proportion of output fault causes" : "Proportion of downtime categories"}
+                        </p>
+                      </div>
+                      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                        {faultView === 'category' && (
+                          <>
+                            <button className="export-btn" onClick={exportCategoryExcel} title="Export to Excel">
+                              <Download size={14} style={{ marginRight: '5px' }} /> Excel
+                            </button>
+                            <button className="export-btn" onClick={() => captureElement(panelRef, isFullScreen ? 'Output_Analysis_Panel_Full.png' : 'Output_Analysis_Panel.png')} title="Capture Panel as Image">
+                              <Camera size={14} style={{ marginRight: '5px' }} /> Capture
+                            </button>
+                            <button className="export-btn" onClick={() => setIsFullScreen(!isFullScreen)} title={isFullScreen ? 'Exit Full Screen' : 'Full Screen Mode'}>
+                              {isFullScreen ? <Minimize2 size={14} style={{ marginRight: '5px' }} /> : <Maximize2 size={14} style={{ marginRight: '5px' }} />}
+                              {isFullScreen ? 'Exit Full Screen' : 'Full Screen'}
+                            </button>
+                            <div className="chart-style-toggle-group">
+                              <button className={outputFaultChartType === 'pie' ? 'active' : ''} onClick={() => { setOutputFaultChartType('pie'); setSelectedDrillDownCategory(null); }}>Pie</button>
+                              <button className={outputFaultChartType === 'pareto' ? 'active' : ''} onClick={() => { setOutputFaultChartType('pareto'); setSelectedDrillDownCategory(null); }}>Pareto</button>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    <div className="chart-wrapper">
+                      {faultView === 'category' ? (
+                        outputFaultChartType === 'pie' ? (
                           <ResponsiveContainer width="100%" height={320}>
                             <PieChart>
                               <Pie
@@ -1813,18 +2155,22 @@ function App() {
                                 fill="#8884d8"
                                 dataKey="value"
                                 onClick={(e) => {
+                                  const records = filteredIncidents.filter(inc => inc.mappedCategory === e.name);
+                                  setSelectedFaultRecords(records);
+                                  setSelectedFaultTitle('Category: ' + e.name);
+                                  setIsFaultModalVisible(true);
                                   if (!selectedDrillDownCategory) {
                                     setSelectedDrillDownCategory(e.name);
                                     setOutputFaultChartType('pareto');
                                   }
                                 }}
-                                style={{ cursor: !selectedDrillDownCategory ? 'pointer' : 'default' }}
+                                style={{ cursor: 'pointer' }}
                               >
                                 {outputFaultPieData.map((entry, index) => (
                                   <Cell key={`cell-${index}`} fill={entry.color} />
                                 ))}
                               </Pie>
-                              <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', borderColor: '#334155', color: '#f8fafc' }} formatter={(v, n, item) => [`${item.payload && item.payload.realValue !== undefined ? item.payload.realValue : v}%`, n]} />
+                              <Tooltip contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)', color: 'var(--text-main)' }} formatter={(v, n, item) => [`${item.payload && item.payload.realValue !== undefined ? item.payload.realValue : v}%`, n]} />
                               <Legend layout="vertical" verticalAlign="middle" align="right" />
                             </PieChart>
                           </ResponsiveContainer>
@@ -1833,48 +2179,57 @@ function App() {
                             {selectedDrillDownCategory && (
                               <div style={{ padding: '0 0 10px 10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <div>
-                                  <button onClick={() => setSelectedDrillDownCategory(null)} className="back-btn" style={{ background: 'rgba(59, 130, 246, 0.2)', border: '1px solid #3b82f6', color: '#60a5fa', padding: '4px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                  <button onClick={() => setSelectedDrillDownCategory(null)} className="back-btn" style={{ background: 'var(--bg-active-light, rgba(59, 130, 246, 0.2))', border: '1px solid #3b82f6', color: '#60a5fa', padding: '4px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                     ← Back to Categories
                                   </button>
-                                  <h3 style={{ marginTop: '10px', fontSize: '14px', color: '#94a3b8' }}>
+                                  <h3 style={{ marginTop: '10px', fontSize: '14px', color: 'var(--text-muted)' }}>
                                     Fault Codes for: <span style={{ color: '#fff' }}>{selectedDrillDownCategory}</span>
                                   </h3>
                                 </div>
                               </div>
                             )}
-                            <ResponsiveContainer width="100%" height={320}>
+                            <ResponsiveContainer width="100%" height={350}>
                               <ComposedChart data={selectedDrillDownCategory ? faultCodesDrillDown[selectedDrillDownCategory] || [] : outputFaultParetoData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                                <XAxis dataKey="name" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: isFullScreen ? 14 : 11 }} tickLine={false} axisLine={{ stroke: '#334155' }} />
-                                <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: isFullScreen ? 14 : 11 }} tickLine={false} axisLine={{ stroke: '#334155' }} />
-                                <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: isFullScreen ? 14 : 11 }} tickLine={false} axisLine={{ stroke: '#334155' }} tickFormatter={v => `${v.toFixed(0)}%`} />
-                                <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', borderColor: '#334155', color: '#f8fafc' }} formatter={(v, n, item) => n === 'Cumulative %' ? [`${v.toFixed(1)}%`, n] : item.payload.desc ? [v, `${n}: ${item.payload.desc}`] : [v, n]} />
+                                <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" vertical={false} />
+                                <XAxis dataKey="name" stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)', fontSize: isFullScreen ? 14 : 11 }} tickLine={false} axisLine={{ stroke: 'var(--border-light)' }} />
+                                <YAxis yAxisId="left" stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)', fontSize: isFullScreen ? 14 : 11 }} tickLine={false} axisLine={{ stroke: 'var(--border-light)' }} />
+                                <YAxis yAxisId="right" orientation="right" stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)', fontSize: isFullScreen ? 14 : 11 }} tickLine={false} axisLine={{ stroke: 'var(--border-light)' }} tickFormatter={v => `${v.toFixed(0)}%`} />
+                                <Tooltip contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)', color: 'var(--text-main)' }} formatter={(v, n, item) => n === 'Cumulative %' ? [`${v.toFixed(1)}%`, n] : item.payload.desc ? [v, `${n}: ${item.payload.desc}`] : [v, n]} />
+                                <Legend onClick={handleToggleSeries} wrapperStyle={{ cursor: 'pointer' }} />
                                 <Bar
+                                  hide={hiddenSeries['value']}
                                   yAxisId="left"
                                   dataKey="value"
-                                  name={selectedDrillDownCategory ? "Faults" : "Fault Causes"}
-                                  fill="#5470c6"
+                                  name="Fault Count"
+                                  fill="#60a5fa"
                                   radius={[4, 4, 0, 0]}
-                                  isAnimationActive={true}
-                                  animationDuration={600}
-                                  animationEasing="ease-out"
+                                  barSize={isFullScreen ? 40 : 30}
                                   onClick={(e) => {
-                                    if (!selectedDrillDownCategory) {
-                                      setSelectedDrillDownCategory(e.name);
+                                    if (e && e.name) {
+                                      if (selectedDrillDownCategory) {
+                                        const records = filteredIncidents.filter(inc => inc.code === e.name);
+                                        setSelectedFaultRecords(records);
+                                        setSelectedFaultTitle('Fault Code: ' + e.name);
+                                        setIsFaultModalVisible(true);
+                                      } else {
+                                        setSelectedDrillDownCategory(e.name);
+                                      }
                                     }
                                   }}
                                   style={{ cursor: 'pointer' }}
                                 >
                                   {
-                                    (selectedDrillDownCategory ? faultCodesDrillDown[selectedDrillDownCategory] || [] : outputFaultParetoData).map((entry, index) => (
-                                      <Cell key={`cell-${index}`} fill={entry.color || '#5470c6'} />
-                                    ))
+                                    (selectedDrillDownCategory ? (faultCodesDrillDown[selectedDrillDownCategory] || []) : outputFaultParetoData).map((entry, index) => {
+                                      const colors = ['#ef4444', '#f97316', '#f59e0b', '#84cc16', '#10b981', '#06b6d4', '#3b82f6', '#6366f1', '#a855f7', '#ec4899'];
+                                      return <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />;
+                                    })
                                   }
                                 </Bar>
                                 {!selectedDrillDownCategory && (
                                   <Line
+                                    hide={hiddenSeries['cumulativePercentage']}
                                     yAxisId="right"
-                                    type="monotone"
+                                    type="linear"
                                     dataKey="cumulativePercentage"
                                     name="Cumulative %"
                                     stroke="#fac858"
@@ -1884,170 +2239,13 @@ function App() {
                                     isAnimationActive={true}
                                   />
                                 )}
+                                <Brush dataKey="name" height={30} stroke="#5470c6" fill="var(--bg-dark)" tickFormatter={() => ''} />
                               </ComposedChart>
                             </ResponsiveContainer>
                           </div>
-                        )}
-                      </div>
-                    </div>
-              </div>
-
-              {/* Asset Selection Bar */}
-              <div className="asset-filter-bar panel">
-                <span className="filter-label">Analyzing:</span>
-                <div className="filter-buttons">
-                  <button
-                    className={`filter-btn ${selectedAsset === 'ALL' ? 'active' : ''}`}
-                    onClick={() => handleAssetFilterChange('ALL')}
-                  >
-                    ALL Assets ({chartData.length})
-                  </button>
-                  {chartData.map(c => (
-                    <button
-                      key={c.asset}
-                      className={`filter-btn ${selectedAsset === c.asset ? 'active' : ''}`}
-                      onClick={() => handleAssetFilterChange(c.asset)}
-                    >
-                      {c.abbreviation}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Middle row: Condition details & Trend Chart */}
-              <div className="grid-row-middle">
-                {conditionData && (
-                  <div className="panel condition-panel" style={{ flex: "0 0 60%" }}>
-                    <div className="panel-header">
-                      <h2>Equipment Condition</h2>
-                      <p className="subtitle">{selectedAsset === 'ALL' ? 'Global Average' : selectedAsset}</p>
-                    </div>
-                    <div className="condition-grid">
-                      <ConditionBar label="Running" actual={conditionData.run} kpi={KPI.RUN} isGte={true} isActive={activeCondition === 'RUN'} onClick={() => setActiveCondition('RUN')} />
-                      <ConditionBar label="Idle" actual={conditionData.idle} kpi={KPI.IDLE} isGte={false} isActive={activeCondition === 'IDLE'} onClick={() => setActiveCondition('IDLE')} />
-                      <ConditionBar label="Maintenance" actual={conditionData.down} kpi={KPI.DOWN} isGte={false} isActive={activeCondition === 'DOWN'} onClick={() => setActiveCondition('DOWN')} />
-                      <ConditionBar label="PM" actual={conditionData.pm} kpi={KPI.PM} isGte={false} isActive={activeCondition === 'PM'} onClick={() => setActiveCondition('PM')} />
-                    </div>
-                  </div>
-                )}
-
-                <div className="panel chart-panel trend-panel">
-                  <div className="panel-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                    <div>
-                      <h2>{activeCondition === 'RUN' ? 'Run Analysis' : `${activeCondition} Trend Analysis (%)`}</h2>
-                      <p className="subtitle">Daily performance against KPI</p>
-                    </div>
-                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                      <button
-                        className="export-btn"
-                        onClick={() => {
-                          let trendKey, kpiObj, name;
-                          switch (activeCondition) {
-                            case 'RUN': trendKey = 'dailyRun'; kpiObj = KPI.RUN; name = 'RUN'; break;
-                            case 'IDLE': trendKey = 'dailyIdle'; kpiObj = KPI.IDLE; name = 'IDLE'; break;
-                            case 'DOWN': trendKey = 'dailyDown'; kpiObj = KPI.DOWN; name = 'DOWN'; break;
-                            case 'PM': trendKey = 'dailyPm'; kpiObj = KPI.PM; name = 'PM'; break;
-                            default: return;
-                          }
-                          exportDailyTrend(trendKey, kpiObj, name);
-                        }}
-                        title={`Export ${activeCondition} Trend to Excel`}
-                        style={{ padding: '4px 10px', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '6px' }}
-                      >
-                        <Download size={14} /> Excel
-                      </button>
-                      <button className="chart-style-to  ggle" onClick={() => toggleChartStyle('trend')}>
-                        {chartStyle.trend === 'monotone' ? 'Curved' : 'Straight'}
-                      </button>
-                    </div>
-                  </div>
-                  <div className="chart-wrapper">
-                    <ResponsiveContainer width="100%" height={320}>
-                      <ComposedChart
-                        data={
-                          activeCondition === 'RUN' ? runData :
-                            activeCondition === 'IDLE' ? idleData :
-                              activeCondition === 'DOWN' ? downData : pmData
-                        }
-                        margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-                      >
-                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                        <XAxis dataKey="date" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} tickLine={false} axisLine={{ stroke: '#334155' }} />
-                        <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} tickLine={false} axisLine={{ stroke: '#334155' }} />
-                        <Tooltip content={<RunTooltip />} />
-                        <Legend wrapperStyle={{ paddingTop: '20px' }} />
-                        <Bar dataKey="value" name={activeCondition === 'RUN' ? 'Running ratio' : 'Actual Ratio'} fill="#5470c6" radius={[4, 4, 0, 0]} />
-                        <Line type={chartStyle.trend} dataKey="target" name="Target KPI" stroke="#f59e0b" strokeWidth={3} dot={false} />
-                      </ComposedChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-              </div>
-
-              {/* Third row: Output Analysis & Extra Charts */}
-              <div className="split-row">
-                <div className="panel chart-panel output-panel">
-                  <div className="panel-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                    <div>
-                      <h2>Output Quantity Analysis</h2>
-                      <p className="subtitle">Daily production output (Normal vs Rework)</p>
-                    </div>
-                    <button className="chart-style-toggle" onClick={() => toggleChartStyle('output')}>
-                      {chartStyle.output === 'monotone' ? 'Curved' : 'Straight'}
-                    </button>
-                  </div>
-                  <div className="chart-wrapper">
-                    <ResponsiveContainer width="100%" height={320}>
-                      <ComposedChart data={outputData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                        <XAxis dataKey="date" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} tickLine={false} axisLine={{ stroke: '#334155' }} />
-                        <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} tickLine={false} axisLine={{ stroke: '#334155' }} />
-                        <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', borderColor: '#334155', color: '#f8fafc' }} />
-                        <Legend verticalAlign="bottom" align="center" onClick={handleLegendClick} wrapperStyle={{ paddingTop: '20px', cursor: 'pointer' }} />
-                        <Bar dataKey="normalOutputActual" stackId="a" name="Normal Work Order Actual Output" fill="#bfd3ed" radius={[0, 0, 0, 0]} hide={!outputSeriesVisibility.normalOutputActual} legendType="rect" barSize={24} />
-                        <Bar dataKey="reworkOutputActual" stackId="a" name="Rework Order Actual Output" fill="#4a90e2" radius={[0, 0, 0, 0]} hide={!outputSeriesVisibility.reworkOutputActual} legendType="rect" barSize={24} />
-                        <Line type={chartStyle.output} dataKey="normalOutputStandard" name="Normal Work Order Standard Output" stroke="#7cc6b7" strokeWidth={3} dot={false} hide={!outputSeriesVisibility.normalOutputStandard} legendType="rect" />
-                        <Line type={chartStyle.output} dataKey="reworkOutputStandard" name="Rework Order Standard Output" stroke="#a8d26a" strokeWidth={3} dot={false} hide={!outputSeriesVisibility.reworkOutputStandard} legendType="rect" />
-                      </ComposedChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-
-                {activeCondition === 'IDLE' && (
-                  <div className="panel chart-panel idle-panel">
-                    <div className="panel-header">
-                      <h2>Idle Time Analysis</h2>
-                      <p className="subtitle">Breakdown of idle causes (Estimated Hours)</p>
-                    </div>
-                    <div className="chart-wrapper">
-                      {idleTimeData.length > 0 ? (
-                        <ResponsiveContainer width="100%" height={320}>
-                          <BarChart data={idleTimeData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                            <XAxis dataKey="date" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} tickLine={false} axisLine={{ stroke: '#334155' }} />
-                            <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} tickLine={false} axisLine={{ stroke: '#334155' }} />
-                            <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', borderColor: '#334155', color: '#f8fafc' }} />
-                            <Legend wrapperStyle={{ paddingTop: '20px' }} />
-                            <Bar dataKey="Wait Material" stackId="a" fill="#ff7675" />
-                            <Bar dataKey="Wait Operator" name="Wait Operator" stackId="a" fill="#ff9f43" />
-                            <Bar dataKey="No Plan" name="No Plan" stackId="a" fill="#00cec9" />
-                          </BarChart>
-                        </ResponsiveContainer>
+                        )
                       ) : (
-                        <div style={{ padding: '20px', textAlign: 'center', color: '#94a3b8' }}>No data</div>
-                      )}
-                    </div>
-                  </div>
-                )}
-                {activeCondition === 'DOWN' && (
-                  <>
-                    <div className="panel chart-panel down-panel">
-                      <div className="panel-header">
-                        <h2>Maintenance Fault Causes</h2>
-                        <p className="subtitle">Proportion of downtime categories</p>
-                      </div>
-                      <div className="chart-wrapper">
-                        <ResponsiveContainer width="100%" height={320}>
+                        <ResponsiveContainer width="100%" height={350}>
                           <PieChart>
                             <Pie
                               data={maintenancePieData}
@@ -2062,304 +2260,742 @@ function App() {
                                 <Cell key={`cell-${index}`} fill={entry.color} />
                               ))}
                             </Pie>
-                            <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', borderColor: '#334155', color: '#f8fafc' }} formatter={(v, n, item) => [`${item.payload && item.payload.realValue !== undefined ? item.payload.realValue : v}%`, n]} />
+                            <Tooltip contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)', color: 'var(--text-main)' }} formatter={(v, n, item) => [`${item.payload && item.payload.realValue !== undefined ? item.payload.realValue : v}%`, n]} />
                             <Legend layout="horizontal" verticalAlign="bottom" align="center" />
                           </PieChart>
                         </ResponsiveContainer>
-                      </div>
+                      )}
                     </div>
+                  </div>
 
-                    <div className="panel chart-panel pareto-panel">
-                  <div className="panel-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                    <div>
-                      <h2>Downtime Pareto Analysis (Hours)</h2>
-                      <p className="subtitle">Identifies equipment with the highest downtime impact</p>
-                    </div>
-                    <button className="chart-style-toggle" onClick={() => toggleChartStyle('pareto')}>
-                      {chartStyle.pareto === 'monotone' ? 'Curved' : 'Straight'}
+                </div>
+
+                {/* Bottom row: Table */}
+                < div className="panel table-panel" >
+                  <div className="panel-header">
+                    <h2>Equipment Details</h2>
+                    <button className="export-btn" onClick={exportCSV} title="Export to CSV">
+                      <Download size={16} /> Export CSV
                     </button>
                   </div>
-                  <div className="chart-wrapper">
-                    <ResponsiveContainer width="100%" height={320}>
-                      <ComposedChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                        <XAxis dataKey="asset" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} tickLine={false} axisLine={{ stroke: '#334155' }} />
-                        <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} tickLine={false} axisLine={{ stroke: '#334155' }} />
-                        <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} tickLine={false} axisLine={{ stroke: '#334155' }} tickFormatter={v => `${v}%`} />
-                        <Tooltip content={<ParetoTooltip />} />
-                        <Legend wrapperStyle={{ paddingTop: '20px' }} />
-                        <Bar yAxisId="left" dataKey="downtime" name="Downtime (hrs)" fill="#ef4444" radius={[4, 4, 0, 0]} />
-                        <Line yAxisId="right" type={chartStyle.pareto} dataKey="cumulativePercentage" name="Cumulative %" stroke="#eab308" strokeWidth={3} dot={{ r: 4, fill: '#eab308' }} activeDot={{ r: 6 }} />
-                      </ComposedChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-                  </>
-                )}
-
-                {
-                  activeCondition === 'PM' && (
-                    <div className="panel chart-panel pm-panel">
-                      <div className="panel-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                        <div>
-                          <h2>PM Activity Analysis</h2>
-                          <p className="subtitle">Preventive Maintenance Hours over time</p>
-                        </div>
-                        <button className="chart-style-toggle" onClick={() => toggleChartStyle('pm')}>
-                          {chartStyle.pm === 'monotone' ? 'Curved' : 'Straight'}
-                        </button>
-                      </div>
-                      <div className="chart-wrapper">
-                        <ResponsiveContainer width="100%" height={320}>
-                          <ComposedChart data={pmData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                            <XAxis dataKey="date" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} tickLine={false} axisLine={{ stroke: '#334155' }} />
-                            <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} tickLine={false} axisLine={{ stroke: '#334155' }} />
-                            <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', borderColor: '#334155', color: '#f8fafc' }} />
-                            <Legend wrapperStyle={{ paddingTop: '20px' }} />
-                            <Bar dataKey="value" name="PM Hours" fill="#1890FF" radius={[4, 4, 0, 0]} />
-                            <Line type={chartStyle.pm} dataKey="value" stroke="#f59e0b" strokeWidth={2} dot={{ r: 4, fill: '#f59e0b' }} />
-                          </ComposedChart>
-                        </ResponsiveContainer>
-                      </div>
-                    </div>
-                  )
-                }
-              </div >
-
-              {/* Bottom row: Table */}
-              < div className="panel table-panel" >
-                <div className="panel-header">
-                  <h2>Equipment Details</h2>
-                  <button className="export-btn" onClick={exportCSV} title="Export to CSV">
-                    <Download size={16} /> Export CSV
-                  </button>
-                </div>
-                <div className="table-responsive">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Index</th>
-                        {renderMainSortableHeader("Assets No", "asset")}
-                        {renderMainSortableHeader("SAP Code", "sapCode")}
-                        {renderMainSortableHeader("Equipment Name", "name")}
-                        {renderMainSortableHeader("Utilization rate", "actualUtil")}
-                        {renderMainSortableHeader("Duration Of Downtime", "downtime")}
-                        {renderMainSortableHeader("Run Time", "runTimeHr")}
-                        {renderMainSortableHeader("Station", "station")}
-                        {renderMainSortableHeader("Site", "site")}
-                        {renderMainSortableHeader("Equipment Type", "type")}
-                        {renderMainSortableHeader("Equipment Model", "model")}
-                        {renderMainSortableHeader("Equipment Abbreviation", "abbreviation")}
-                        {renderMainSortableHeader("Device Location", "location")}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {tableData.map((row, idx) => (
-                        <tr key={idx} className={row.assetCode === selectedAsset ? 'selected' : ''} onClick={() => {
-                          if (row.assetCode) {
-                            setSelectedAsset(row.assetCode === selectedAsset ? 'ALL' : row.assetCode);
-                          }
-                        }}>
-                          <td>{row.assetCode}</td>
-                          <td>
-                            <div className="status-indicator" style={{ display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'center' }}>
-                              <span className={`status-dot ${row.runStatus === 'RUN' ? 'success' : row.runStatus === 'DOWN' ? 'error' : row.runStatus === 'IDLE' ? 'warning' : 'offline'}`}></span>
-                              {row.runStatus}
-                            </div>
-                          </td>
-                          <td>{row.actualUtil}%</td>
-                          <td>{row.downtime}</td>
-                          <td>{row.runTimeHr}</td>
-                          <td>{row.station}</td>
-                          <td>{row.site}</td>
-                          <td>{row.type}</td>
-                          <td>{row.model}</td>
-                          <td>{row.abbreviation}</td>
-                          <td>{row.location}</td>
+                  <div className="table-responsive" style={{ maxHeight: 'none', overflowY: 'visible' }}>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Index</th>
+                          {renderMainSortableHeader("Assets No", "asset")}
+                          {renderMainSortableHeader("SAP Code", "sapCode")}
+                          {renderMainSortableHeader("Equipment Name", "name")}
+                          {renderMainSortableHeader("Utilization rate", "actualUtil")}
+                          {renderMainSortableHeader("Duration Of Downtime", "downtime")}
+                          {renderMainSortableHeader("Run Time", "runTimeHr")}
+                          {renderMainSortableHeader("Station", "station")}
+                          {renderMainSortableHeader("Site", "site")}
+                          {renderMainSortableHeader("Equipment Type", "type")}
+                          {renderMainSortableHeader("Equipment Model", "model")}
+                          {renderMainSortableHeader("Equipment Abbreviation", "abbreviation")}
+                          {renderMainSortableHeader("Device Location", "location")}
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {tableData.map((row, idx) => (
+                          <tr key={idx} className={row.asset === selectedAsset ? 'selected' : ''} onClick={() => {
+                            if (row.asset) {
+                              setSelectedAsset(row.asset === selectedAsset ? 'ALL' : row.asset);
+                            }
+                          }}>
+                            <td>{idx + 1}</td>
+                            <td>{row.asset || '-'}</td>
+                            <td>{row.sapCode || '-'}</td>
+                            <td>{row.name || '-'}</td>
+                            <td>{row.actualUtil?.toFixed(2) || 0}%</td>
+                            <td>{row.downtime?.toFixed(2) || 0}</td>
+                            <td>{row.runTimeHr?.toFixed(2) || 0}</td>
+                            <td>{row.station || '-'}</td>
+                            <td>{row.site || '-'}</td>
+                            <td>{row.type || '-'}</td>
+                            <td>{row.model || '-'}</td>
+                            <td>{row.abbreviation || '-'}</td>
+                            <td>{row.location || '-'}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {popupOpen && popupData && (
-            <div className="fault-popup-overlay" onClick={(e) => {
-              if (e.target.className === 'fault-popup-overlay') {
-                setPopupOpen(false);
-                setPopupSearchQuery('');
-                setPopupFilterValue('ALL');
-              }
-            }}>
-              <div ref={popupRef} className="fault-popup-content glass-panel" style={{ width: '900px', maxWidth: '95vw', maxHeight: '90vh', overflowY: 'auto' }}>
-                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', position: 'sticky', top: '10px', zIndex: 10 }}>
-                  <button className="export-btn" onClick={() => captureElement(popupRef, `Fault_${popupData.data.code}.png`)} title="Capture Popup as Image" style={{ padding: '6px 12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <Camera size={14} /> Capture
-                  </button>
-                  <button className="fault-popup-close" style={{ position: 'static' }} onClick={() => { setPopupOpen(false); setPopupSearchQuery(''); setPopupFilterValue('ALL'); }}>✕</button>
-                </div>
-
-                <div className="popup-header" style={{ paddingRight: '120px' }}>
-                  <div className="popup-header-title">
-                    <span className={`popup-tag ${popupData.type === 'human' ? 'human' : ''}`}>
-                      {popupData.type === 'human' ? 'Human Error Analysis' : 'Device Fault Analysis'}
-                    </span>
-                    <h1 style={{ fontSize: '1.5rem', fontWeight: '700', margin: 0 }}>
-                      {popupData.type === 'human' ? popupData.data.operator : `${popupData.data.code}: ${popupData.data.name}`}
-                    </h1>
+            {popupOpen && popupData && (
+              <div className="fault-popup-overlay" onClick={(e) => {
+                if (e.target.className === 'fault-popup-overlay') {
+                  setPopupOpen(false);
+                  setPopupSearchQuery('');
+                  setPopupFilterValue('ALL');
+                }
+              }}>
+                <div ref={popupRef} className="fault-popup-content glass-panel" style={{ width: '900px', maxWidth: '95vw', maxHeight: '90vh', overflowY: 'auto' }}>
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', position: 'sticky', top: '10px', zIndex: 10 }}>
+                    <button className="export-btn" onClick={() => captureElement(popupRef, `Fault_${popupData.data.code}.png`)} title="Capture Popup as Image" style={{ padding: '6px 12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <Camera size={14} /> Capture
+                    </button>
+                    <button className="fault-popup-close" style={{ position: 'static' }} onClick={() => { setPopupOpen(false); setPopupSearchQuery(''); setPopupFilterValue('ALL'); }}>✕</button>
                   </div>
-                  <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginTop: '8px', lineHeight: '1.4' }}>
-                    {popupData.type === 'human' ? `Detailed performance profile and operator error log for personnel ${popupData.data.operator}.` : popupData.data.description}
-                  </p>
 
-                  {popupData.type === 'device' && ["TXYJ03", "TXYJ12", "TXYJ05", "TXYJ10"].includes(popupData.data.code) && (
-                    <div style={{ marginTop: '10px', fontSize: '0.9rem', color: '#fbbf24', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <Lock size={16} />
-                      <span>Special device configuration applied. Incident count: {popupData.data.totalIncidents}</span>
+                  <div className="popup-header" style={{ paddingRight: '120px' }}>
+                    <div className="popup-header-title">
+                      <span className={`popup-tag ${popupData.type === 'human' ? 'human' : ''}`}>
+                        {popupData.type === 'human' ? 'Human Error Analysis' : 'Device Fault Analysis'}
+                      </span>
+                      <h1 style={{ fontSize: '1.5rem', fontWeight: '700', margin: 0 }}>
+                        {popupData.type === 'human' ? popupData.data.operator : `${popupData.data.code}: ${popupData.data.name}`}
+                      </h1>
                     </div>
-                  )}
-                </div>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '8px', lineHeight: '1.4' }}>
+                      {popupData.type === 'human' ? `Detailed performance profile and operator error log for personnel ${popupData.data.operator}.` : popupData.data.description}
+                    </p>
 
-                {/* Popup Performance Stats */}
-                <div className="popup-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '15px', marginTop: '20px', padding: '15px', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                  <div className="stat-card">
-                    <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
-                      {popupData.type === 'human' ? 'Total Error Incidents' : 'Total Occurrences'}
-                    </span>
-                    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#f8fafc', marginTop: '5px' }}>
-                      {popupData.type === 'human' ? popupData.data.totalErrors : popupData.data.totalIncidents}
-                    </div>
+                    {popupData.type === 'device' && ["TXYJ03", "TXYJ12", "TXYJ05", "TXYJ10"].includes(popupData.data.code) && (
+                      <div style={{ marginTop: '10px', fontSize: '0.9rem', color: '#fbbf24', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <Lock size={16} />
+                        <span>Special device configuration applied. Incident count: {popupData.data.totalIncidents}</span>
+                      </div>
+                    )}
                   </div>
-                  <div className="stat-card">
-                    <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
-                      {popupData.type === 'human' ? 'Error Rate (%)' : 'Standard Repair Time'}
-                    </span>
-                    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#f59e0b', marginTop: '5px' }}>
-                      {popupData.type === 'human' ? popupData.data.errorRate : `${popupData.data.standardRepairTime} mins`}
-                    </div>
-                  </div>
-                  <div className="stat-card">
-                    <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
-                      {popupData.type === 'human' ? 'Units Run' : 'Average Repair Duration'}
-                    </span>
-                    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#10b981', marginTop: '5px' }}>
-                      {popupData.type === 'human' ? popupData.data.totalUnitsRun : `${popupData.data.avgDuration} mins`}
-                    </div>
-                  </div>
-                </div>
 
-                {/* Popup Main Sections: Left Operators Profile & Right Incident Table */}
-                <div className="popup-body-split" style={{ display: 'flex', gap: '20px', marginTop: '20px', flexWrap: 'wrap' }}>
-                  {popupData.type === 'device' && (
-                    <div className="popup-left-list" style={{ flex: '1 1 250px', background: 'rgba(255,255,255,0.01)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', padding: '15px' }}>
-                      <h3 style={{ fontSize: '1rem', fontWeight: '600', margin: '0 0 12px 0', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '8px' }}>Top Affected Operators</h3>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                        {popupData.data.topOperators?.map(op => (
-                          <div key={op.operator} className="operator-list-item" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px', background: 'rgba(255,255,255,0.02)', borderRadius: '6px' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                              <div className="operator-avatar" style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#3b82f6', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: '600' }}>
-                                {op.initials}
-                              </div>
-                              <span style={{ fontSize: '0.85rem', fontWeight: '500' }}>{op.operator}</span>
-                            </div>
-                            <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>{op.count} times ({op.rate})</span>
-                          </div>
-                        ))}
+                  {/* Popup Performance Stats */}
+                  <div className="popup-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '15px', marginTop: '20px', padding: '15px', background: 'var(--bg-card-hover)', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
+                    <div className="stat-card">
+                      <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                        {popupData.type === 'human' ? 'Total Error Incidents' : 'Total Occurrences'}
+                      </span>
+                      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-main)', marginTop: '5px' }}>
+                        {popupData.type === 'human' ? popupData.data.totalErrors : popupData.data.totalIncidents}
                       </div>
                     </div>
-                  )}
-
-                  {/* Filter and Search Bar for Popups */}
-                  <div className="popup-right-table" style={{ flex: '2 1 450px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                    <div className="table-controls" style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
-                      <input
-                        type="text"
-                        placeholder={popupData.type === 'human' ? "Search symptom or work order..." : "Search repair personnel or work order..."}
-                        value={popupSearchQuery}
-                        onChange={e => setPopupSearchQuery(e.target.value)}
-                        style={{ flex: 1, padding: '8px 12px', borderRadius: '6px', background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', fontSize: '0.85rem' }}
-                      />
-                      <select
-                        value={popupFilterValue}
-                        onChange={e => setPopupFilterValue(e.target.value)}
-                        style={{ padding: '8px 12px', borderRadius: '6px', background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', fontSize: '0.85rem', cursor: 'pointer' }}
-                      >
-                        <option value="ALL">All Records</option>
-                        {popupData.type === 'device' ? (
-                          popupData.data.topOperators?.map(op => (
-                            <option key={op.operator} value={op.operator}>{op.operator}</option>
-                          ))
-                        ) : (
-                          [...new Set(popupData.data.errors?.map(err => err.symptom))].map(symp => (
-                            <option key={symp} value={symp}>{symp}</option>
-                          ))
-                        )}
-                      </select>
+                    <div className="stat-card">
+                      <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                        {popupData.type === 'human' ? 'Error Rate (%)' : 'Standard Repair Time'}
+                      </span>
+                      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#f59e0b', marginTop: '5px' }}>
+                        {popupData.type === 'human' ? popupData.data.errorRate : `${popupData.data.standardRepairTime} mins`}
+                      </div>
                     </div>
+                    <div className="stat-card">
+                      <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                        {popupData.type === 'human' ? 'Units Run' : 'Average Repair Duration'}
+                      </span>
+                      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#10b981', marginTop: '5px' }}>
+                        {popupData.type === 'human' ? popupData.data.totalUnitsRun : `${popupData.data.avgDuration} mins`}
+                      </div>
+                    </div>
+                  </div>
 
-                    {/* Incident Table */}
-                    <div className="table-responsive" style={{ maxHeight: '300px', overflowY: 'auto' }}>
-                      <table>
-                        <thead>
-                          <tr>
-                            {popupData.type === 'human' ? (
-                              <>
-                                <th>Index</th>
-                                <th>Date</th>
-                                <th>Work Order</th>
-                                {renderSortableHeader("Symptom", "symptom")}
-                                {renderSortableHeader("Units Processed", "unitsProcessed")}
-                                {renderSortableHeader("Failed Units", "failedUnits")}
-                              </>
-                            ) : (
-                              <>
-                                <th>Index</th>
-                                <th>Work Order</th>
-                                {renderSortableHeader("Date Time", "date")}
-                                {renderSortableHeader("Operator", "operator")}
-                                {renderSortableHeader("Repair Personnel", "repairPersonnel")}
-                                {renderSortableHeader("Duration", "duration")}
-                              </>
-                            )}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {filteredIncidentHistory.map((item, idx) => (
-                            <tr key={idx}>
-                              <td>{idx + 1}</td>
+                  {/* Popup Main Sections: Left Operators Profile & Right Incident Table */}
+                  <div className="popup-body-split" style={{ display: 'flex', gap: '20px', marginTop: '20px', flexWrap: 'wrap' }}>
+                    {popupData.type === 'device' && (
+                      <div className="popup-left-list" style={{ flex: '1 1 250px', background: 'rgba(255,255,255,0.01)', borderRadius: '8px', border: '1px solid var(--border-light)', padding: '15px' }}>
+                        <h3 style={{ fontSize: '1rem', fontWeight: '600', margin: '0 0 12px 0', borderBottom: '1px solid var(--border-light)', paddingBottom: '8px' }}>Top Affected Operators</h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                          {popupData.data.topOperators?.map(op => (
+                            <div key={op.operator} className="operator-list-item" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px', background: 'var(--bg-card-hover)', borderRadius: '6px' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <div className="operator-avatar" style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#3b82f6', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: '600' }}>
+                                  {op.initials}
+                                </div>
+                                <span style={{ fontSize: '0.85rem', fontWeight: '500' }}>{op.operator}</span>
+                              </div>
+                              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{op.count} times ({op.rate})</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Filter and Search Bar for Popups */}
+                    <div className="popup-right-table" style={{ flex: '2 1 450px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                      <div className="table-controls" style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
+                        <input
+                          type="text"
+                          placeholder={popupData.type === 'human' ? "Search symptom or work order..." : "Search repair personnel or work order..."}
+                          value={popupSearchQuery}
+                          onChange={e => setPopupSearchQuery(e.target.value)}
+                          style={{ flex: 1, padding: '8px 12px', borderRadius: '6px', background: 'rgba(15,23,42,0.6)', border: '1px solid var(--border-light)', color: '#fff', fontSize: '0.85rem' }}
+                        />
+                        <select
+                          value={popupFilterValue}
+                          onChange={e => setPopupFilterValue(e.target.value)}
+                          style={{ padding: '8px 12px', borderRadius: '6px', background: 'rgba(15,23,42,0.6)', border: '1px solid var(--border-light)', color: '#fff', fontSize: '0.85rem', cursor: 'pointer' }}
+                        >
+                          <option value="ALL">All Records</option>
+                          {popupData.type === 'device' ? (
+                            popupData.data.topOperators?.map(op => (
+                              <option key={op.operator} value={op.operator}>{op.operator}</option>
+                            ))
+                          ) : (
+                            [...new Set(popupData.data.errors?.map(err => err.symptom))].map(symp => (
+                              <option key={symp} value={symp}>{symp}</option>
+                            ))
+                          )}
+                        </select>
+                      </div>
+
+                      {/* Incident Table */}
+                      <div className="table-responsive" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                        <table>
+                          <thead>
+                            <tr>
                               {popupData.type === 'human' ? (
                                 <>
-                                  <td>{item.date}</td>
-                                  <td>{item.workOrder}</td>
-                                  <td>{item.symptom}</td>
-                                  <td>{item.unitsProcessed}</td>
-                                  <td style={{ color: '#f87171', fontWeight: 600 }}>{item.failedUnits}</td>
+                                  <th>Index</th>
+                                  <th>Date</th>
+                                  <th>Work Order</th>
+                                  {renderSortableHeader("Symptom", "symptom")}
+                                  {renderSortableHeader("Units Processed", "unitsProcessed")}
+                                  {renderSortableHeader("Failed Units", "failedUnits")}
                                 </>
                               ) : (
                                 <>
-                                  <td>{item.workOrder}</td>
-                                  <td>{item.date}</td>
-                                  <td style={getOperatorHeaderStyle()}>{item.operator}</td>
-                                  <td>{item.repairPersonnel}</td>
-                                  <td style={getRepairTimeStyle(item.duration)}>{item.duration}</td>
+                                  <th>Index</th>
+                                  <th>Work Order</th>
+                                  {renderSortableHeader("Date Time", "date")}
+                                  {renderSortableHeader("Operator", "operator")}
+                                  {renderSortableHeader("Repair Personnel", "repairPersonnel")}
+                                  {renderSortableHeader("Duration", "duration")}
                                 </>
                               )}
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
+                          </thead>
+                          <tbody>
+                            {filteredIncidentHistory.map((item, idx) => (
+                              <tr key={idx}>
+                                <td>{idx + 1}</td>
+                                {popupData.type === 'human' ? (
+                                  <>
+                                    <td>{item.date}</td>
+                                    <td>{item.workOrder}</td>
+                                    <td>{item.symptom}</td>
+                                    <td>{item.unitsProcessed}</td>
+                                    <td style={{ color: '#f87171', fontWeight: 600 }}>{item.failedUnits}</td>
+                                  </>
+                                ) : (
+                                  <>
+                                    <td>{item.workOrder}</td>
+                                    <td>{item.date}</td>
+                                    <td style={getOperatorHeaderStyle()}>{item.operator}</td>
+                                    <td>{item.repairPersonnel}</td>
+                                    <td style={getRepairTimeStyle(item.duration)}>{item.duration}</td>
+                                  </>
+                                )}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+
+
+
+            {isFaultModalVisible && (() => {
+              const totalIncidents = sortedModalRecords.length;
+              const totalDuration = sortedModalRecords.reduce((acc, r) => acc + (parseFloat(r.duration) || 0), 0);
+              const avgResolution = totalIncidents > 0 ? Math.round(totalDuration / totalIncidents) : 0;
+              const criticality = avgResolution > 60 ? 'High' : avgResolution > 30 ? 'Medium' : 'Low';
+
+              const operatorStats = sortedModalRecords.reduce((acc, r) => {
+                const op = r.repairPersonnel || 'Unknown';
+                if (!acc[op]) acc[op] = { count: 0, duration: 0 };
+                acc[op].count += 1;
+                acc[op].duration += (parseFloat(r.duration) || 0);
+                return acc;
+              }, {});
+              const topOperators = Object.entries(operatorStats)
+                .map(([name, stat]) => ({ name, count: stat.count, duration: stat.duration, percentage: (stat.count / totalIncidents * 100).toFixed(1) }))
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 5);
+
+              const getColorFromName = (name) => {
+                let hash = 0;
+                for (let i = 0; i < name.length; i++) {
+                  hash = name.charCodeAt(i) + ((hash << 5) - hash);
+                }
+                const colors = ['#ef4444', '#f97316', '#f59e0b', '#84cc16', '#10b981', '#06b6d4', '#3b82f6', '#6366f1', '#a855f7', '#ec4899'];
+                return colors[Math.abs(hash) % colors.length];
+              };
+
+              const isFaultCode = selectedFaultTitle.startsWith('Fault Code: ');
+              const code = isFaultCode ? selectedFaultTitle.replace('Fault Code: ', '') : null;
+              let titleText = selectedFaultTitle;
+              let desc = "Detailed incident history and analysis for the selected fault category.";
+
+              if (code) {
+                if (typeof faultDescriptions !== 'undefined' && faultDescriptions[code]) {
+                  titleText = `${code}: ${faultDescriptions[code]}`;
+                } else if (typeof DEVICE_FAULT_DETAILS !== 'undefined' && DEVICE_FAULT_DETAILS[code]) {
+                  titleText = `${code}: ${DEVICE_FAULT_DETAILS[code].name}`;
+                  desc = DEVICE_FAULT_DETAILS[code].desc || desc;
+                }
+              }
+
+              return (
+                <>
+                  <div className="modal-overlay" style={{ zIndex: 9999, padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.7)' }} onMouseDown={(e) => { if (e.target === e.currentTarget) setIsFaultModalVisible(false); }}>
+                    <div className="modal-content table-modal" style={{ width: '95%', maxWidth: '1400px', maxHeight: '90vh', overflowY: 'auto', background: 'var(--bg-dark)', border: '1px solid var(--border-light)', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }} onClick={(e) => e.stopPropagation()}>
+
+                      {/* Header Section */}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                        <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                          <div style={{ background: 'var(--bg-active-light, rgba(59, 130, 246, 0.2))', border: '1px solid #3b82f6', color: '#60a5fa', padding: '6px 16px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px', textAlign: 'center', lineHeight: '1.2' }}>
+                            DEVICE FAULT<br />ANALYSIS
+                          </div>
+                          <div>
+                            <h2 style={{ margin: 0, color: 'var(--text-main)', fontSize: '1.5rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                              {titleText}
+                            </h2>
+                            <p style={{ margin: '8px 0 0 0', color: 'var(--text-muted)', fontSize: '0.9rem', maxWidth: '800px', lineHeight: '1.4' }}>{desc}</p>
+                          </div>
+                        </div>
+                        <div style={{ display: 'flex', gap: '10px' }}>
+                          <button className="export-btn" onClick={() => captureElement(document.querySelector('.table-modal'), 'Fault_Analysis_Capture.png')} title="Capture Image" style={{ padding: '6px 12px', display: 'flex', alignItems: 'center', gap: '6px', background: 'var(--border-light)', border: '1px solid var(--border-light)', color: 'var(--border-light)', borderRadius: '4px', cursor: 'pointer' }}>
+                            <Camera size={14} /> Capture
+                          </button>
+                          <button onClick={() => setIsFaultModalVisible(false)} style={{ background: 'var(--border-light)', border: '1px solid var(--border-light)', color: 'var(--border-light)', cursor: 'pointer', fontSize: '16px', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>&times;</button>
+                        </div>
+                      </div>
+
+                      {/* Body Section (2 Columns) */}
+                      <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: '24px', alignItems: 'start' }}>
+
+                        {/* Left Column */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignSelf: 'start' }}>
+                          {/* Summary Panel */}
+                          <div className="panel chart-panel interactive-panel" onClick={() => setIsSummaryPopupOpen(true)} style={{ padding: '20px', background: 'var(--bg-card)', border: '1px solid var(--bg-card-hover)', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s', position: 'relative' }}>
+                            <h3 style={{ margin: '0 0 20px 0', color: 'var(--text-muted)', fontSize: '0.9rem', letterSpacing: '1px', textTransform: 'uppercase' }}>Summary</h3>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '0.95rem' }}>
+                              <span style={{ color: 'var(--text-muted)' }}>Total Incidents:</span>
+                              <span style={{ color: '#f87171', fontWeight: 'bold' }}>{totalIncidents} times</span>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '0.95rem' }}>
+                              <span style={{ color: 'var(--text-muted)' }}>Duration Time Total:</span>
+                              <span style={{ color: '#f59e0b', fontWeight: 'bold' }}>{totalDuration} mins</span>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '0.95rem' }}>
+                              <span style={{ color: 'var(--text-muted)' }}>Avg Resolution:</span>
+                              <span style={{ color: '#38bdf8', fontWeight: 'bold' }}>{avgResolution} mins</span>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', fontSize: '0.95rem' }}>
+                              <span style={{ color: 'var(--text-muted)' }}>Criticality:</span>
+                              <span style={{ color: criticality === 'High' ? '#f59e0b' : criticality === 'Medium' ? '#fbbf24' : '#34d399', fontWeight: 'bold' }}>{criticality}</span>
+                            </div>
+                            <div style={{ textAlign: 'center', fontSize: '0.75rem', color: '#60a5fa', opacity: 0.8 }}>
+                              Click for Detailed Analysis
+                            </div>
+                          </div>
+
+                          {/* Top Operators Panel */}
+                          <div className="panel chart-panel interactive-panel" onClick={() => setIsOperatorsPopupOpen(true)} style={{ padding: '20px', background: 'var(--bg-card)', border: '1px solid var(--bg-card-hover)', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s', position: 'relative' }}>
+                            <h3 style={{ margin: '0 0 20px 0', color: 'var(--text-muted)', fontSize: '0.9rem', letterSpacing: '1px', textTransform: 'uppercase' }}>Top Repair Personnel Involved</h3>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '16px' }}>
+                              {topOperators.map((op, idx) => {
+                                const initials = op.name.replace(/[^a-zA-Zก-ฮ]/g, '').substring(0, 2).toUpperCase() || 'OP';
+                                const opColor = getColorFromName(op.name);
+                                return (
+                                  <div key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                      <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: `${opColor}33`, border: `1px solid ${opColor}`, color: opColor, display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '0.8rem', fontWeight: 'bold' }}>
+                                        {initials}
+                                      </div>
+                                      <span style={{ color: 'var(--text-main)', fontSize: '0.95rem' }}>{op.name}</span>
+                                    </div>
+                                    <div style={{ textAlign: 'right' }}>
+                                      <div>
+                                        <span style={{ color: '#60a5fa', fontWeight: 'bold', fontSize: '1.1rem', marginRight: '6px' }}>{op.count}</span>
+                                        <span style={{ color: '#64748b', fontSize: '0.8rem' }}>({op.percentage}%)</span>
+                                      </div>
+                                      <div style={{ color: 'var(--text-muted)', fontSize: '0.75rem', marginTop: '2px' }}>
+                                        Total Time: {op.duration} mins
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                            <div style={{ textAlign: 'center', fontSize: '0.75rem', color: '#60a5fa', opacity: 0.8 }}>
+                              Click for Detailed Analysis
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Right Column: Detailed Table */}
+                        <div className="panel chart-panel" style={{ padding: '20px', background: 'var(--bg-card)', border: '1px solid var(--bg-card-hover)', borderRadius: '8px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                            <h3 style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', letterSpacing: '1px', textTransform: 'uppercase' }}>Machine Incident Log History</h3>
+                          </div>
+
+                          <div style={{ display: 'flex', gap: '15px', marginBottom: '20px', alignItems: 'center' }}>
+                            <input
+                              type="text"
+                              placeholder="Search records (Work Order, Asset, Personnel, etc.)..."
+                              value={modalSearchQuery}
+                              onChange={(e) => setModalSearchQuery(e.target.value)}
+                              className="modern-select"
+                              style={{ flex: 1, maxWidth: '400px', background: 'var(--bg-card-hover)', border: '1px solid var(--border-light)', color: 'var(--text-main)', padding: '8px 12px', borderRadius: '4px' }}
+                            />
+                          </div>
+
+                          <div
+                            className="table-responsive"
+                            ref={modalTableRef}
+                            onMouseDown={handleModalMouseDown}
+                            onMouseMove={handleModalMouseMove}
+                            onMouseUp={handleModalMouseUpOrLeave}
+                            onMouseLeave={handleModalMouseUpOrLeave}
+                            onContextMenu={(e) => { if (isModalDragging) e.preventDefault(); }}
+                            style={{ cursor: isModalDragging ? 'grabbing' : 'auto', flex: 1, border: 'none', background: 'transparent', overflowX: 'auto' }}
+                          >
+                            <table className="custom-table" style={{ width: 'max-content', minWidth: '100%', fontSize: '0.85rem' }}>
+                              <thead>
+                                <tr>
+                                  {renderModalSortableHeader('Work Order Code', 'workOrderCode')}
+                                  {renderModalSortableHeader('Standard Repair Time (min)', 'standardRepairTime')}
+                                  {renderModalSortableHeader('Repair Duration (min)', 'duration')}
+                                  {renderModalSortableHeader('Request Time', 'date')}
+                                  {renderModalSortableHeader('Repair Personnel', 'repairPersonnel')}
+                                  {renderModalSortableHeader('Equipment Short Name', 'equipmentShortName')}
+                                  {renderModalSortableHeader('Equipment Type', 'equipmentType')}
+                                  {renderModalSortableHeader('Position', 'position')}
+                                  {renderModalSortableHeader('Model', 'model')}
+                                  {renderModalSortableHeader('Fault Type', 'faultType')}
+                                  {renderModalSortableHeader('Fault Category', 'mappedCategory')}
+                                  {renderModalSortableHeader('Fault Code', 'mappedCode')}
+                                  {renderModalSortableHeader('Fault Description', 'faultDescription')}
+                                  {renderModalSortableHeader('Analysis and Troubleshooting', 'analysis')}
+                                  {renderModalSortableHeader('Repair Time', 'repairTime')}
+                                  {renderModalSortableHeader('Restart Time', 'restartTime')}
+                                  {renderModalSortableHeader('Requester', 'operator')}
+                                  {renderModalSortableHeader('Acceptance Personnel', 'acceptancePersonnel')}
+                                  {renderModalSortableHeader('Order Response Duration (min)', 'responseDuration')}
+                                  {renderModalSortableHeader('Acceptance Duration (min)', 'acceptanceDuration')}
+                                  {renderModalSortableHeader('Asset Code', 'assetCode')}
+                                  {renderModalSortableHeader('Work Order Duration (min)', 'workOrderDuration')}
+                                  {renderModalSortableHeader('Work Order Status', 'status')}
+                                  {renderModalSortableHeader('SAP Code', 'sapCode')}
+                                  {renderModalSortableHeader('Equipment Name', 'equipmentName')}
+                                  {renderModalSortableHeader('Equipment Model', 'equipmentModel')}
+                                  {renderModalSortableHeader('Order Receiver', 'receiver')}
+                                  {renderModalSortableHeader('Supplementary Entry Status', 'supplementaryStatus')}
+                                  {renderModalSortableHeader('Repair Type', 'repairType')}
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {sortedModalRecords.map((inc, i) => {
+                                  const meta = assetsMetadata[inc.assetCode] || {};
+                                  let faultDesc = "Unknown fault code description";
+                                  if (typeof faultDescriptions !== 'undefined' && faultDescriptions[inc.mappedCode]) {
+                                    faultDesc = faultDescriptions[inc.mappedCode];
+                                  } else if (typeof DEVICE_FAULT_DETAILS !== 'undefined' && DEVICE_FAULT_DETAILS[inc.mappedCode]) {
+                                    faultDesc = DEVICE_FAULT_DETAILS[inc.mappedCode].name;
+                                  }
+                                  return (
+                                    <tr key={i} style={{ borderBottom: '1px solid var(--border-light)' }}>
+                                      <td>{inc.workOrderCode || inc.workOrder || '-'}</td>
+                                      <td>{inc.standardRepairTime || '-'}</td>
+                                      <td style={{ position: 'relative', padding: 0 }}>
+                                        <div style={{
+                                          position: 'absolute',
+                                          top: 0,
+                                          left: 0,
+                                          height: '100%',
+                                          width: `${Math.min(((parseFloat(inc.duration) || 0) / (parseFloat(inc.standardRepairTime) || 1)) * 100, 100)}%`,
+                                          backgroundColor: getAcceptanceColor(inc.duration, inc.standardRepairTime),
+                                          zIndex: 0
+                                        }} />
+                                        <div style={{ position: 'relative', zIndex: 1, padding: '8px' }}>
+                                          {inc.duration || '-'}
+                                        </div>
+                                      </td>
+                                      <td>{inc.date || '-'}</td>
+                                      <td style={{ padding: '8px', verticalAlign: 'middle' }}>
+                                        {inc.repairPersonnel && inc.repairPersonnel !== '-' ? (() => {
+                                          const opName = inc.repairPersonnel;
+                                          const initials = opName.replace(/[^a-zA-Zก-ฮ]/g, '').substring(0, 2).toUpperCase() || 'RP';
+                                          const opColor = getColorFromName(opName);
+                                          return (
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                              <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: `${opColor}33`, border: `1px solid ${opColor}`, color: opColor, display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '0.7rem', fontWeight: 'bold' }}>
+                                                {initials}
+                                              </div>
+                                              <span style={{ whiteSpace: 'nowrap' }}>{opName}</span>
+                                            </div>
+                                          );
+                                        })() : '-'}
+                                      </td>
+                                      <td>{meta.abbreviation || inc.assetCode || '-'}</td>
+                                      <td>{meta.type || '-'}</td>
+                                      <td>-</td>
+                                      <td>{meta.model || '-'}</td>
+                                      <td>{inc.mappedCategory || '-'}</td>
+                                      <td>{inc.mappedCategory || '-'}</td>
+                                      <td>{inc.mappedCode || '-'}</td>
+                                      <td>{faultDesc || '-'}</td>
+                                      <td>-</td>
+                                      <td>-</td>
+                                      <td>-</td>
+                                      <td style={{ verticalAlign: 'middle' }}>{inc.operator || '-'}</td>
+                                      <td>-</td>
+                                      <td>-</td>
+                                      <td>-</td>
+                                      <td>{inc.assetCode || '-'}</td>
+                                      <td>{inc.duration || '-'}</td>
+                                      <td>Closed order</td>
+                                      <td>{meta.sapCode || '-'}</td>
+                                      <td>{meta.name || '-'}</td>
+                                      <td>{meta.model || '-'}</td>
+                                      <td>{inc.repairPersonnel || '-'}</td>
+                                      <td>Supplemented</td>
+                                      <td>Internal repair</td>
+                                    </tr>
+                                  )
+                                })}
+                                {sortedModalRecords.length === 0 && (
+                                  <tr>
+                                    <td colSpan="29" style={{ textAlign: 'center', padding: '20px' }}>No records found.</td>
+                                  </tr>
+                                )}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* --- Summary Analysis Popup --- */}
+                  {isSummaryPopupOpen && (() => {
+                    const distribution = [
+                      { name: '< 15 min', value: 0, fill: '#34d399' },
+                      { name: '15-30 min', value: 0, fill: '#fbbf24' },
+                      { name: '30-60 min', value: 0, fill: '#f59e0b' },
+                      { name: '> 60 min', value: 0, fill: '#ef4444' }
+                    ];
+                    let maxDur = 0;
+                    let maxIncident = null;
+                    const assetMap = {};
+
+                    sortedModalRecords.forEach(inc => {
+                      const dur = parseFloat(inc.duration) || 0;
+                      if (dur > maxDur) {
+                        maxDur = dur;
+                        maxIncident = inc;
+                      }
+                      if (dur < 15) distribution[0].value += 1;
+                      else if (dur <= 30) distribution[1].value += 1;
+                      else if (dur <= 60) distribution[2].value += 1;
+                      else distribution[3].value += 1;
+
+                      const assetCode = inc.assetCode || 'Unknown';
+                      assetMap[assetCode] = (assetMap[assetCode] || 0) + 1;
+                    });
+
+                    const topAssets = Object.entries(assetMap)
+                      .map(([name, count]) => ({ name, count }))
+                      .sort((a, b) => b.count - a.count)
+                      .slice(0, 10);
+
+                    return (
+                      <div className="fault-popup-overlay" style={{ zIndex: 10005 }} onClick={(e) => { if (e.target.className.includes('fault-popup-overlay')) setIsSummaryPopupOpen(false); }}>
+                        <div className="fault-popup-content glass-panel" style={{ width: '900px', maxWidth: '95vw', padding: '24px', position: 'relative' }} onClick={e => e.stopPropagation()}>
+                          <button className="fault-popup-close" onClick={() => setIsSummaryPopupOpen(false)} style={{ position: 'absolute', top: '16px', right: '16px', background: 'transparent', border: 'none', color: 'var(--text-muted)', fontSize: '1.5rem', cursor: 'pointer' }}>✕</button>
+                          <h2 style={{ color: 'var(--text-main)', fontSize: '1.5rem', marginBottom: '8px', marginTop: 0 }}>Fault Summary Analytics</h2>
+                          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '24px', marginTop: 0 }}>Deep dive into key performance indicators, repair time distribution, and affected assets.</p>
+
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
+                            <div className="stat-card" style={{ background: 'var(--bg-card-hover)', padding: '16px', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
+                              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Total Incidents</div>
+                              <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-main)', marginTop: '4px' }}>{totalIncidents}</div>
+                            </div>
+                            <div className="stat-card" style={{ background: 'var(--bg-card-hover)', padding: '16px', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
+                              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Total Downtime</div>
+                              <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#f59e0b', marginTop: '4px' }}>{totalDuration} mins</div>
+                            </div>
+                            <div className="stat-card" style={{ background: 'var(--bg-card-hover)', padding: '16px', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
+                              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>MTTR</div>
+                              <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#38bdf8', marginTop: '4px' }}>{avgResolution} mins</div>
+                            </div>
+                            <div className="stat-card" style={{ background: 'var(--bg-card-hover)', padding: '16px', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
+                              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Max Downtime</div>
+                              <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#ef4444', marginTop: '4px' }}>{maxDur} mins</div>
+                              <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{maxIncident ? maxIncident.workOrder || maxIncident.workOrderCode : ''}</div>
+                            </div>
+                          </div>
+
+                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                            <div style={{ background: 'var(--bg-card)', padding: '16px', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
+                              <h3 style={{ margin: '0 0 16px 0', fontSize: '1rem', color: 'var(--text-muted)' }}>Repair Time Distribution</h3>
+                              <ResponsiveContainer width="100%" height={220}>
+                                <BarChart data={distribution} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                                  <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" vertical={false} />
+                                  <XAxis dataKey="name" stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
+                                  <YAxis stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
+                                  <Tooltip contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)', color: 'var(--text-main)' }} itemStyle={{ color: 'var(--text-main)' }} labelStyle={{ color: 'var(--text-muted)' }} />
+                                  <Bar dataKey="value" name="Incidents" radius={[4, 4, 0, 0]}>
+                                    {distribution.map((entry, index) => (
+                                      <Cell key={`cell-${index}`} fill={entry.fill} />
+                                    ))}
+                                  </Bar>
+                                </BarChart>
+                              </ResponsiveContainer>
+                            </div>
+
+                            <div style={{ background: 'var(--bg-card)', padding: '16px', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
+                              <h3 style={{ margin: '0 0 16px 0', fontSize: '1rem', color: 'var(--text-muted)' }}>Top Affected Assets</h3>
+                              <ResponsiveContainer width="100%" height={220}>
+                                <BarChart data={topAssets} layout="vertical" margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+                                  <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" horizontal={false} />
+                                  <XAxis type="number" stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} />
+                                  <YAxis dataKey="name" type="category" stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} width={80} />
+                                  <Tooltip contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)', color: 'var(--text-main)' }} itemStyle={{ color: 'var(--text-main)' }} labelStyle={{ color: 'var(--text-muted)' }} />
+                                  <Bar dataKey="count" name="Incidents" fill="#8b5cf6" radius={[0, 4, 4, 0]} barSize={16} />
+                                </BarChart>
+                              </ResponsiveContainer>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  {/* --- Top Repair Personnel Analysis Popup --- */}
+                  {isOperatorsPopupOpen && (() => {
+                    let allOps = Object.entries(operatorStats)
+                      .map(([name, stat]) => ({
+                        name,
+                        count: stat.count,
+                        duration: stat.duration,
+                        avgDuration: stat.count > 0 ? Math.round(stat.duration / stat.count) : 0,
+                        percentage: (stat.count / totalIncidents * 100).toFixed(1)
+                      }));
+
+                    if (opsPopupSearch) {
+                      allOps = allOps.filter(o => o.name.toLowerCase().includes(opsPopupSearch.toLowerCase()));
+                    }
+
+                    allOps.sort((a, b) => {
+                      const valA = a[opsPopupSortKey] || 0;
+                      const valB = b[opsPopupSortKey] || 0;
+                      if (valA < valB) return opsPopupSortDir === 'asc' ? -1 : 1;
+                      if (valA > valB) return opsPopupSortDir === 'asc' ? 1 : -1;
+                      return 0;
+                    });
+
+                    const chartData = [...allOps].sort((a, b) => b.count - a.count).slice(0, 10);
+
+                    const renderSortableTh = (label, key) => (
+                      <th style={{ cursor: 'pointer', padding: '10px' }} onClick={() => {
+                        if (opsPopupSortKey === key) {
+                          setOpsPopupSortDir(d => d === 'asc' ? 'desc' : 'asc');
+                        } else {
+                          setOpsPopupSortKey(key);
+                          setOpsPopupSortDir('desc');
+                        }
+                      }}>
+                        {label} {opsPopupSortKey === key ? (opsPopupSortDir === 'asc' ? '▲' : '▼') : ''}
+                      </th>
+                    );
+
+                    return (
+                      <div className="fault-popup-overlay" style={{ zIndex: 10005 }} onClick={(e) => { if (e.target.className.includes('fault-popup-overlay')) setIsOperatorsPopupOpen(false); }}>
+                        <div className="fault-popup-content glass-panel" style={{ width: '1000px', maxWidth: '95vw', padding: '24px', position: 'relative', display: 'flex', flexDirection: 'column', maxHeight: '90vh' }} onClick={e => e.stopPropagation()}>
+                          <button className="fault-popup-close" onClick={() => setIsOperatorsPopupOpen(false)} style={{ position: 'absolute', top: '16px', right: '16px', background: 'transparent', border: 'none', color: 'var(--text-muted)', fontSize: '1.5rem', cursor: 'pointer' }}>✕</button>
+                          <h2 style={{ color: 'var(--text-main)', fontSize: '1.5rem', marginBottom: '8px', marginTop: 0 }}>Top Repair Personnel Deep Dive</h2>
+                          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '20px', marginTop: 0 }}>Detailed repair personnel performance metrics, incident frequencies, and resolution times.</p>
+
+                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', flex: 1, minHeight: 0 }}>
+
+                            {/* Left Table */}
+                            <div style={{ display: 'flex', flexDirection: 'column', background: 'var(--bg-card)', borderRadius: '8px', border: '1px solid var(--border-light)', overflow: 'hidden' }}>
+                              <div style={{ padding: '16px', borderBottom: '1px solid var(--border-light)' }}>
+                                <input
+                                  type="text"
+                                  placeholder="Search Operator..."
+                                  value={opsPopupSearch}
+                                  onChange={e => setOpsPopupSearch(e.target.value)}
+                                  style={{ width: '100%', padding: '8px 12px', background: 'var(--bg-dark)', border: '1px solid var(--border-light)', color: 'var(--text-main)', borderRadius: '4px' }}
+                                />
+                              </div>
+                              <div style={{ flex: 1, overflowY: 'auto' }}>
+                                <table className="custom-table" style={{ width: '100%', fontSize: '0.85rem', color: 'var(--text-main)' }}>
+                                  <thead style={{ position: 'sticky', top: 0, background: 'var(--bg-dark)', zIndex: 1 }}>
+                                    <tr>
+                                      {renderSortableTh('Operator', 'name')}
+                                      {renderSortableTh('Incidents', 'count')}
+                                      {renderSortableTh('Total Time', 'duration')}
+                                      {renderSortableTh('Avg Time', 'avgDuration')}
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {allOps.map((op, i) => {
+                                      const initials = op.name.replace(/[^a-zA-Zก-ฮ]/g, '').substring(0, 2).toUpperCase() || 'OP';
+                                      const opColor = getColorFromName(op.name);
+                                      return (
+                                        <tr key={i} style={{ borderBottom: '1px solid var(--border-light)' }}>
+                                          <td style={{ padding: '10px' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                              <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: `${opColor}33`, border: `1px solid ${opColor}`, color: opColor, display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '0.7rem', fontWeight: 'bold' }}>
+                                                {initials}
+                                              </div>
+                                              <span>{op.name}</span>
+                                            </div>
+                                          </td>
+                                          <td style={{ padding: '10px', color: '#60a5fa', fontWeight: 'bold' }}>{op.count}</td>
+                                          <td style={{ padding: '10px', color: '#f59e0b' }}>{op.duration} m</td>
+                                          <td style={{ padding: '10px', color: '#34d399' }}>{op.avgDuration} m</td>
+                                        </tr>
+                                      )
+                                    })}
+                                    {allOps.length === 0 && <tr><td colSpan="4" style={{ padding: '20px', textAlign: 'center' }}>No operators found.</td></tr>}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+
+                            {/* Right Chart */}
+                            <div style={{ display: 'flex', flexDirection: 'column', background: 'var(--bg-card)', padding: '16px', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
+                              <h3 style={{ margin: '0 0 16px 0', fontSize: '1rem', color: 'var(--text-muted)' }}>Incidents vs. Total Duration (Top 10)</h3>
+                              <div style={{ flex: 1, minHeight: '300px' }}>
+                                <ResponsiveContainer width="100%" height="100%">
+                                  <ComposedChart data={chartData} margin={{ top: 20, right: 20, bottom: 20, left: 0 }}>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" vertical={false} />
+                                    <XAxis dataKey="name" stroke="var(--text-muted)" tick={{ fill: 'var(--text-muted)', fontSize: 10 }} tickFormatter={name => name.substring(0, 10) + '...'} />
+                                    <YAxis yAxisId="left" stroke="#60a5fa" tick={{ fill: '#60a5fa', fontSize: 11 }} />
+                                    <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" tick={{ fill: '#f59e0b', fontSize: 11 }} />
+                                    <Tooltip contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-light)', color: 'var(--text-main)' }} itemStyle={{ color: 'var(--text-main)' }} labelStyle={{ color: 'var(--text-muted)' }} />
+                                    <Legend wrapperStyle={{ paddingTop: '10px' }} />
+                                    <Bar yAxisId="left" dataKey="count" name="Incident Count" fill="#60a5fa" radius={[4, 4, 0, 0]} barSize={24} />
+                                    <Line yAxisId="right" type="monotone" dataKey="duration" name="Total Duration (m)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4 }} />
+                                    <Brush dataKey="name" height={20} stroke="#5470c6" fill="var(--bg-dark)" tickFormatter={() => ''} />
+                                  </ComposedChart>
+                                </ResponsiveContainer>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                </>
+              );
+            })()}
           </div>{/* end dashboard-content */}
-        </main>
-      </div>
+        </main >
+      </div >
     </>
   );
 }

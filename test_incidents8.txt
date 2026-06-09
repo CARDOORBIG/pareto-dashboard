@@ -1,0 +1,27 @@
+﻿
+>     "assetCode": "EFAZZ0000975",
+      "date": "2026-05-16 02:13:49",
+      "operator": "Kunthida Ratjinda",
+      "repairPersonnel": "Kreingsak Suksana",
+      "duration": 67,
+      "standardRepairTime": 70,
+      "workOrder": "JX00263866",
+      "code": "RXRJ10"
+>     "assetCode": "EFAZZ0000975",
+      "date": "2026-05-17 02:28:08",
+      "operator": "Supawan Boonchauy",
+      "repairPersonnel": "Wanchai Poomtubtim",
+      "duration": 34,
+      "standardRepairTime": 70,
+      "workOrder": "JX00265134",
+      "code": "RXRJ10"
+>     "assetCode": "EFAZZ0000975",
+      "date": "2026-05-16 20:46:45",
+      "operator": "Siriporn Cha Lee",
+      "repairPersonnel": "Chanatip  Kumlek",
+      "duration": 31,
+      "standardRepairTime": 70,
+      "workOrder": "JX00264807",
+      "code": "RXRJ10"
+
+
